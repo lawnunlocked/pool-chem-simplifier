@@ -3,47 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pool Chemical Calculator | Fix Your Pool Fast</title>
+  <title>Pool Chemical Calculator | Simple & Accurate</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <meta name="description" content="Instantly calculate how much pool chemicals to add. No guesswork. Just clear steps.">
+  <meta name="description" content="Simple pool chemical calculator. Get exact amounts instantly. No guesswork.">
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-to-b from-blue-50 to-white text-gray-800">
+<body class="bg-gray-50 text-gray-800">
 
 <!-- NAV -->
-<header class="bg-white shadow-sm">
-  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold text-blue-700">Pool Chem Simplifier</h1>
-    <div class="text-sm text-gray-500">Free Pool Calculator</div>
+<header class="bg-white border-b">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-lg font-semibold tracking-tight">Pool Chem Simplifier</h1>
+    <span class="text-sm text-gray-400">Free Tool</span>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="text-center py-12 px-4">
-  <h2 class="text-4xl font-bold mb-4">
-    Fix Your Pool Chemistry in Seconds
+<section class="max-w-3xl mx-auto px-4 py-12 text-center">
+  <h2 class="text-3xl font-semibold mb-3">
+    Fix Your Pool Chemistry Without Guessing
   </h2>
-  <p class="text-lg text-gray-600 mb-8">
-    Enter your test results. Get exact chemical amounts instantly.
+  <p class="text-gray-500 mb-8">
+    Enter your readings. Get exact chemical amounts instantly.
   </p>
 
-  <!-- CALCULATOR CARD -->
-  <div class="bg-white shadow-xl rounded-2xl p-6 max-w-xl mx-auto border">
+  <!-- CALCULATOR -->
+  <div class="bg-white border rounded-xl p-6 shadow-sm text-left">
 
     <div class="grid gap-4">
 
-      <input id="gallons" placeholder="Pool Size (Gallons)" type="number" class="w-full border p-3 rounded-lg"/>
+      <div>
+        <label class="text-sm text-gray-500">Pool Size (Gallons)</label>
+        <input id="gallons" type="number" class="w-full mt-1 border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-gray-200"/>
+      </div>
 
-      <input id="ph" placeholder="Current pH (ex: 7.8)" type="number" step="0.1" class="w-full border p-3 rounded-lg"/>
+      <div class="grid grid-cols-3 gap-3">
 
-      <input id="fc" placeholder="Free Chlorine (ppm)" type="number" step="0.1" class="w-full border p-3 rounded-lg"/>
+        <div>
+          <label class="text-sm text-gray-500">pH</label>
+          <input id="ph" type="number" step="0.1" class="w-full mt-1 border rounded-lg p-3"/>
+        </div>
 
-      <input id="ta" placeholder="Total Alkalinity (ppm)" type="number" class="w-full border p-3 rounded-lg"/>
+        <div>
+          <label class="text-sm text-gray-500">Chlorine</label>
+          <input id="fc" type="number" step="0.1" class="w-full mt-1 border rounded-lg p-3"/>
+        </div>
 
-      <button onclick="calculate()" class="bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg text-lg font-semibold">
-        Get My Pool Plan
+        <div>
+          <label class="text-sm text-gray-500">Alkalinity</label>
+          <input id="ta" type="number" class="w-full mt-1 border rounded-lg p-3"/>
+        </div>
+
+      </div>
+
+      <button onclick="calculate()" class="mt-2 bg-gray-900 hover:bg-black text-white py-3 rounded-lg font-medium">
+        Get Pool Plan
       </button>
 
     </div>
@@ -54,45 +79,41 @@
 </section>
 
 <!-- TRUST -->
-<section class="max-w-4xl mx-auto px-4 py-12 text-center">
-  <h3 class="text-2xl font-bold mb-4">No Guessing. No Overdosing.</h3>
-  <p class="text-gray-600">
-    We translate confusing pool chemistry into simple, exact steps.
-    Fix your water faster and avoid wasting chemicals.
+<section class="max-w-3xl mx-auto px-4 pb-12 text-center">
+  <p class="text-sm text-gray-400">
+    Designed to simplify pool care using proven chemistry guidelines.
   </p>
 </section>
 
 <!-- PRODUCTS -->
-<section class="bg-white py-12 border-t">
-  <div class="max-w-5xl mx-auto px-4">
-    <h3 class="text-2xl font-bold mb-6 text-center">Recommended Products</h3>
+<section class="max-w-5xl mx-auto px-4 py-10">
+  <h3 class="text-lg font-semibold mb-6">Recommended Products</h3>
 
-    <div class="grid md:grid-cols-3 gap-6">
+  <div class="grid md:grid-cols-3 gap-6">
 
-      <div class="p-5 border rounded-xl shadow-sm">
-        <h4 class="font-bold text-lg mb-2">Muriatic Acid</h4>
-        <p class="text-sm text-gray-600 mb-3">Quickly lowers pH safely.</p>
-        <a href="#" class="text-blue-600 font-semibold">View on Amazon →</a>
-      </div>
-
-      <div class="p-5 border rounded-xl shadow-sm">
-        <h4 class="font-bold text-lg mb-2">Liquid Chlorine</h4>
-        <p class="text-sm text-gray-600 mb-3">Fast pool sanitization.</p>
-        <a href="#" class="text-blue-600 font-semibold">View on Amazon →</a>
-      </div>
-
-      <div class="p-5 border rounded-xl shadow-sm">
-        <h4 class="font-bold text-lg mb-2">Robot Pool Cleaner</h4>
-        <p class="text-sm text-gray-600 mb-3">Automated cleaning for any pool.</p>
-        <a href="#" class="text-blue-600 font-semibold">View on Amazon →</a>
-      </div>
-
+    <div class="border rounded-xl p-5 bg-white">
+      <p class="text-sm text-gray-400 mb-1">For lowering pH</p>
+      <h4 class="font-medium mb-2">Muriatic Acid</h4>
+      <a href="#" class="text-sm text-gray-900 underline">View on Amazon</a>
     </div>
+
+    <div class="border rounded-xl p-5 bg-white">
+      <p class="text-sm text-gray-400 mb-1">For sanitation</p>
+      <h4 class="font-medium mb-2">Liquid Chlorine</h4>
+      <a href="#" class="text-sm text-gray-900 underline">View on Amazon</a>
+    </div>
+
+    <div class="border rounded-xl p-5 bg-white">
+      <p class="text-sm text-gray-400 mb-1">For easy cleaning</p>
+      <h4 class="font-medium mb-2">Robot Pool Cleaner</h4>
+      <a href="#" class="text-sm text-gray-900 underline">View on Amazon</a>
+    </div>
+
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="text-center py-6 text-sm text-gray-500">
+<footer class="text-center text-xs text-gray-400 py-6">
   © 2026 Pool Chem Simplifier
 </footer>
 
@@ -103,35 +124,40 @@ function calculate() {
   const fc = parseFloat(document.getElementById("fc").value);
   const ta = parseFloat(document.getElementById("ta").value);
 
-  let html = `<div class="bg-blue-50 border rounded-xl p-4">`;
-  html += `<h3 class="font-bold text-lg mb-3">Your Pool Plan</h3>`;
+  if (!gallons || !ph || !fc || !ta) {
+    alert("Please fill out all fields");
+    return;
+  }
 
   const targetPH = 7.4;
   const targetFC = 3;
   const targetTA = 100;
 
-  let hasFix = false;
+  let html = `<div class="border rounded-xl p-5 bg-gray-50">`;
+  html += `<p class="text-sm text-gray-500 mb-2">Your Plan</p>`;
+
+  let step = 1;
 
   if (ph > targetPH) {
     let acid = (ph - targetPH) * 60 * (gallons / 10000);
-    html += `<p class="mb-2">🧪 Add <strong>${acid.toFixed(1)} oz</strong> muriatic acid</p>`;
-    hasFix = true;
+    html += `<p class="mb-2">${step}. Add <strong>${acid.toFixed(1)} oz</strong> muriatic acid</p>`;
+    step++;
   }
 
   if (fc < targetFC) {
     let chlorine = (targetFC - fc) * 12.8 * (gallons / 10000);
-    html += `<p class="mb-2">🧪 Add <strong>${chlorine.toFixed(1)} oz</strong> liquid chlorine</p>`;
-    hasFix = true;
+    html += `<p class="mb-2">${step}. Add <strong>${chlorine.toFixed(1)} oz</strong> liquid chlorine</p>`;
+    step++;
   }
 
   if (ta < targetTA) {
     let soda = ((targetTA - ta) / 10) * 1.5 * (gallons / 10000);
-    html += `<p class="mb-2">🧪 Add <strong>${soda.toFixed(1)} lbs</strong> baking soda</p>`;
-    hasFix = true;
+    html += `<p class="mb-2">${step}. Add <strong>${soda.toFixed(1)} lbs</strong> baking soda</p>`;
+    step++;
   }
 
-  if (!hasFix) {
-    html += `<p>🎉 Your pool is perfectly balanced!</p>`;
+  if (step === 1) {
+    html += `<p>Your pool is balanced.</p>`;
   }
 
   html += `</div>`;
