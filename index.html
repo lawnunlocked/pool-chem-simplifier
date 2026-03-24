@@ -6,118 +6,140 @@
   <title>PoolChem | Professional Calibration</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 
   <style>
     :root { font-family: 'Inter', sans-serif; }
-    h1, h2, h3 { font-family: 'Lora', serif; }
+    h1, h2, h3, h4 { font-family: 'Lora', serif; }
     
-    /* Premium Background Depth */
-    .bg-premium {
+    /* High-End Mesh Gradient Background */
+    .bg-mesh {
       background-color: #f8fafc;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
-        url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 0V1.5M1.5 30V28.5M0 1.5H1.5M30 1.5H28.5' stroke='%23e2e8f0' stroke-width='0.5'/%3E%3C/svg%3E");
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(219, 234, 254, 0.3) 0px, transparent 80%);
+      background-attachment: fixed;
     }
 
-    .glass {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 1);
+    /* Elegant Grid Overlay */
+    .bg-grid-overlay {
+      background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
+      background-size: 24px 24px;
     }
   </style>
 </head>
 
-<body class="bg-premium min-h-screen text-slate-900">
+<body class="bg-mesh min-h-screen text-slate-900 overflow-x-hidden">
+<div class="bg-grid-overlay min-h-screen w-full">
 
-<header class="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
-  <div class="flex items-center gap-2">
-    <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white font-bold text-lg italic shadow-xl">P</div>
-    <span class="font-bold tracking-tight text-xl">PoolChem</span>
+<header class="max-w-6xl mx-auto px-6 py-10 flex justify-between items-center">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-black text-xl italic shadow-2xl">P</div>
+    <span class="font-bold tracking-tighter text-2xl uppercase">PoolChem</span>
   </div>
-  <a href="#" class="text-sm font-bold text-emerald-800 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-100">Get Plan →</a>
+  <nav class="hidden md:flex gap-8 text-xs font-black uppercase tracking-widest text-slate-400">
+    <a href="#calculator" class="hover:text-slate-900 transition-colors">Calculator</a>
+    <a href="#product-guide" class="hover:text-slate-900 transition-colors text-emerald-700">Product Guide</a>
+  </nav>
 </header>
 
-<section class="pt-8 pb-16 px-6">
-  <div class="max-w-4xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border border-white text-slate-500 text-[10px] font-black uppercase tracking-widest mb-8">
-      ✨ Professional Grade
-    </div>
-
-    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] mb-6 text-slate-900">
+<section class="pt-10 pb-20 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.85] mb-8 text-slate-900">
       Stop guessing.<br>
       Start swimming <span class="text-emerald-700 italic">clearer.</span>
     </h1>
 
-    <p class="text-lg text-slate-500 max-w-xl mx-auto mb-10 leading-relaxed font-medium">
-      The smartest way to balance your pool. No markups, just honest science for 1,200+ homeowners.
-    </p>
-  </div>
-</section>
-
-<section class="px-4 pb-20">
-  <div class="max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white overflow-hidden">
-    
-    <div class="p-8 md:p-12">
-      <div class="space-y-10">
-        
-        <div class="relative group">
-          <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Pool Volume</label>
-          <div class="flex items-center gap-4 border-b-2 border-slate-100 group-focus-within:border-emerald-600 transition-all pb-3">
-              <span class="text-2xl opacity-30">🏠</span>
-              <input id="gallons" type="number" placeholder="15000" class="w-full bg-transparent text-3xl font-bold outline-none placeholder:text-slate-200"/>
-              <span class="text-slate-300 font-black text-xs">GALLONS</span>
-          </div>
+    <div class="flex flex-col md:flex-row md:items-center gap-6 mt-12">
+        <p class="text-xl text-slate-500 max-w-lg leading-relaxed font-medium">
+          Answer a few questions about your pool, and we'll recommend the exact products you need.
+        </p>
+        <div class="h-px flex-grow bg-slate-200 hidden md:block"></div>
+        <div class="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-slate-400">
+            <span>Verified Science</span>
+            <span class="text-emerald-500">●</span>
+            <span>2026 Updated</span>
         </div>
-
-        <div class="grid grid-cols-2 gap-8">
-          <div class="space-y-3">
-              <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Current pH</label>
-              <div class="relative">
-                <input id="ph" type="number" step="0.1" placeholder="8.0" class="w-full bg-slate-50 rounded-2xl p-5 text-2xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
-                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-300">pH</span>
-              </div>
-          </div>
-          <div class="space-y-3">
-              <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Chlorine</label>
-              <div class="relative">
-                <input id="fc" type="number" step="0.1" placeholder="1.0" class="w-full bg-slate-50 rounded-2xl p-5 text-2xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
-                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-300">PPM</span>
-              </div>
-          </div>
-        </div>
-
-        <div class="space-y-3">
-          <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Total Alkalinity</label>
-          <div class="relative">
-            <input id="ta" type="number" placeholder="95" class="w-full bg-slate-50 rounded-2xl p-5 text-2xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
-            <span class="absolute right-6 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-300 italic underline decoration-emerald-200">Goal: 100</span>
-          </div>
-        </div>
-
-        <div class="pt-4">
-            <button onclick="calculate()" class="w-full bg-emerald-800 hover:bg-emerald-900 text-white py-6 rounded-2xl font-bold text-xl shadow-2xl shadow-emerald-200/50 transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
-              Get My Free Plan <span class="opacity-50">→</span>
-            </button>
-            
-            <div class="flex justify-center gap-6 mt-8 text-[10px] text-slate-400 font-black uppercase tracking-[0.15em]">
-              <span class="flex items-center gap-1"><span class="text-emerald-500">✓</span> Free</span>
-              <span class="flex items-center gap-1"><span class="text-emerald-500">⏱</span> 30 Sec</span>
-              <span class="flex items-center gap-1"><span class="text-emerald-500">🔒</span> No Spam</span>
-            </div>
-        </div>
-
-        <div id="results" class="empty:hidden mt-4 pt-10 border-t border-slate-50"></div>
-
-      </div>
     </div>
   </div>
 </section>
 
-<footer class="text-center pb-20 text-slate-300 text-[10px] font-bold uppercase tracking-widest">
-  © 2026 Pool Chem Simplifier
+<section id="calculator" class="px-4 pb-32">
+  <div class="max-w-2xl mx-auto bg-white rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.08)] border border-white p-10 md:p-16">
+    
+      <div class="space-y-12">
+        <div class="relative group">
+          <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Pool Volume (Total Gallons)</label>
+          <div class="flex items-center gap-6 border-b-2 border-slate-100 group-focus-within:border-emerald-600 transition-all pb-4">
+              <input id="gallons" type="number" placeholder="15000" class="w-full bg-transparent text-4xl font-bold outline-none placeholder:text-slate-100 tracking-tight"/>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="space-y-4">
+              <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Current pH</label>
+              <input id="ph" type="number" step="0.1" placeholder="8.0" class="w-full bg-slate-50 rounded-[1.5rem] p-6 text-3xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
+          </div>
+          <div class="space-y-4">
+              <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Free Chlorine</label>
+              <input id="fc" type="number" step="0.1" placeholder="1.0" class="w-full bg-slate-50 rounded-[1.5rem] p-6 text-3xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Total Alkalinity</label>
+          <input id="ta" type="number" placeholder="95" class="w-full bg-slate-50 rounded-[1.5rem] p-6 text-3xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
+        </div>
+
+        <div class="pt-6">
+            <button onclick="calculate()" class="w-full bg-slate-900 hover:bg-black text-white py-7 rounded-[1.5rem] font-bold text-xl shadow-2xl transition-all flex items-center justify-center gap-4 active:scale-[0.98]">
+              Generate My Plan <span class="text-emerald-500">→</span>
+            </button>
+            <p class="text-center mt-6 text-[10px] font-bold text-slate-300 uppercase tracking-widest">Takes 30 seconds • No signup required</p>
+        </div>
+
+        <div id="results" class="empty:hidden pt-12"></div>
+
+      </div>
+  </div>
+</section>
+
+<section id="product-guide" class="max-w-6xl mx-auto px-6 py-32 border-t border-slate-200">
+    <div class="mb-20">
+        <h2 class="text-5xl font-bold tracking-tight mb-4">Product Guide</h2>
+        <p class="text-slate-500 text-lg max-w-xl">Curated recommendations for hardware and maintenance tools that we trust.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="group">
+            <div class="aspect-[4/3] bg-white rounded-[2rem] border border-slate-100 shadow-sm mb-8 flex items-center justify-center text-6xl group-hover:shadow-xl transition-all">🤖</div>
+            <h4 class="text-2xl font-bold mb-3">Robotic Cleaners</h4>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">The best investment for any pool owner. Fully automated floor and wall scrubbing.</p>
+            <a href="#" class="inline-block text-[11px] font-black uppercase tracking-widest text-emerald-700 border-b-2 border-emerald-700 pb-1">Browse Models</a>
+        </div>
+
+        <div class="group">
+            <div class="aspect-[4/3] bg-white rounded-[2rem] border border-slate-100 shadow-sm mb-8 flex items-center justify-center text-6xl group-hover:shadow-xl transition-all">🧪</div>
+            <h4 class="text-2xl font-bold mb-3">Startup Bundles</h4>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">Everything you need to open your pool correctly without the local store markup.</p>
+            <a href="#" class="inline-block text-[11px] font-black uppercase tracking-widest text-emerald-700 border-b-2 border-emerald-700 pb-1">View Bundles</a>
+        </div>
+
+        <div class="group">
+            <div class="aspect-[4/3] bg-white rounded-[2rem] border border-slate-100 shadow-sm mb-8 flex items-center justify-center text-6xl group-hover:shadow-xl transition-all">🌡️</div>
+            <h4 class="text-2xl font-bold mb-3">Testing Kits</h4>
+            <p class="text-slate-500 text-sm leading-relaxed mb-6">Ditch the strips. Use a professional-grade drop test kit for 100% accuracy.</p>
+            <a href="#" class="inline-block text-[11px] font-black uppercase tracking-widest text-emerald-700 border-b-2 border-emerald-700 pb-1">Top Rated Kits</a>
+        </div>
+    </div>
+</section>
+
+<footer class="text-center py-20 border-t border-slate-100">
+  <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest">© 2026 Pool Chem Simplifier • Professional Maintenance Tools</p>
 </footer>
+
+</div>
 
 <script>
 function calculate() {
@@ -127,45 +149,43 @@ function calculate() {
   const ta = parseFloat(document.getElementById("ta").value);
 
   if (!gallons || !ph || !fc || !ta) {
-    alert("Please enter all readings.");
+    alert("Enter readings to see your recommendations.");
     return;
   }
 
-  let html = `<div class="space-y-6">
-    <div class="flex items-center justify-between mb-4">
-        <h4 class="text-xl font-bold tracking-tight">Treatment Plan</h4>
-        <span class="bg-emerald-50 text-emerald-700 text-[10px] font-black px-2 py-1 rounded">CALIBRATED</span>
-    </div>`;
+  let html = `<div class="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <h4 class="text-3xl font-bold border-b border-slate-100 pb-6">Your Plan</h4>`;
   
-  // Logic
+  // Logic with Affiliate Focus
   if (ph > 7.4) {
     let dose = (ph - 7.4) * 60 * (gallons / 10000);
-    html += createResult("Lower pH", `${dose.toFixed(1)} oz`, "Muriatic Acid", "bg-orange-50", "text-orange-700");
+    html += createAffiliateResult("Muriatic Acid", `${dose.toFixed(1)} oz`, "Essential for lowering pH to safe levels.", "AMAZON_LINK_HERE");
   }
   if (fc < 3) {
     let dose = (3 - fc) * 12.8 * (gallons / 10000);
-    html += createResult("Sanitize", `${dose.toFixed(1)} oz`, "Liquid Chlorine", "bg-blue-50", "text-blue-700");
+    html += createAffiliateResult("Liquid Chlorine", `${dose.toFixed(1)} oz`, "High-strength formula for sanitation.", "AMAZON_LINK_HERE");
   }
   if (ta < 100) {
     let dose = ((100 - ta) / 10) * 1.5 * (gallons / 10000);
-    html += createResult("Balance TA", `${dose.toFixed(1)} lbs`, "Baking Soda", "bg-indigo-50", "text-indigo-700");
+    html += createAffiliateResult("Baking Soda", `${dose.toFixed(1)} lbs`, "Stabilizes your pool's alkalinity.", "AMAZON_LINK_HERE");
   }
 
   html += `</div>`;
   const res = document.getElementById("results");
   res.innerHTML = html;
-  res.scrollIntoView({ behavior: 'smooth' });
 }
 
-function createResult(label, amount, chem, bg, text) {
+function createAffiliateResult(name, dose, desc, link) {
   return `
-    <div class="flex items-center justify-between p-6 rounded-3xl bg-slate-50 border border-slate-100 group hover:bg-white hover:shadow-xl transition-all">
-        <div>
-            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">${label}</p>
-            <p class="text-3xl font-black ${text}">${amount}</p>
-            <p class="text-[11px] font-bold text-slate-500 mt-1 italic">${chem}</p>
+    <div class="flex flex-col md:flex-row md:items-center justify-between p-8 rounded-[2rem] bg-slate-50 border border-slate-100 group transition-all">
+        <div class="mb-6 md:mb-0">
+            <p class="text-[10px] font-black text-emerald-700 uppercase tracking-widest mb-1">${name}</p>
+            <p class="text-4xl font-black mb-2 tracking-tighter">${dose}</p>
+            <p class="text-xs text-slate-400 font-medium">${desc}</p>
         </div>
-        <div class="h-12 w-12 rounded-2xl ${bg} flex items-center justify-center text-xl shadow-inner">💧</div>
+        <a href="${link}" target="_blank" class="bg-white border-2 border-slate-900 text-slate-900 px-8 py-4 rounded-2xl font-bold text-sm hover:bg-slate-900 hover:text-white transition-all text-center">
+            Buy Now
+        </a>
     </div>`;
 }
 </script>
