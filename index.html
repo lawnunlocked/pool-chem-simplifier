@@ -3,152 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <title>Pool Chemical Calculator | Fix Your Pool Fast</title>
-  <meta name="description" content="Stop guessing pool chemicals. Get exact amounts instantly based on your test results.">
-
+  <title>PoolChem | Professional Pool Calibration</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+    :root { font-family: 'Inter', sans-serif; }
+    h1, h2, h3 { font-family: 'Lora', serif; }
+    
+    /* The LawnUnlocked Grid Effect */
+    .bg-grid {
+      background-size: 30px 30px;
+      background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
+    }
+    
+    /* Soft Fade for the grid */
+    .bg-fade {
+      background: linear-gradient(to bottom, rgba(248,250,252,0) 0%, #f8fafc 100%);
     }
   </style>
 </head>
 
-<body class="bg-slate-50 text-gray-900">
+<body class="bg-slate-50 text-slate-900">
 
-<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
-  <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-    <div class="flex items-center gap-2">
-      <span class="text-2xl">🌊</span>
-      <h1 class="text-xl font-bold tracking-tight text-blue-600">PoolChem</h1>
-    </div>
-    <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider">v2.0 Beta</span>
+<header class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
+  <div class="flex items-center gap-2">
+    <div class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white font-bold text-xs italic">P</div>
+    <span class="font-bold tracking-tight text-xl">PoolChem</span>
   </div>
+  <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
+    <a href="#" class="hover:text-slate-900 transition-colors">Guides</a>
+    <a href="#" class="text-emerald-700 font-semibold">Get My Plan →</a>
+  </nav>
 </header>
 
-<section class="relative overflow-hidden bg-white pt-16 pb-24 px-6">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-10 pointer-events-none">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-      <path fill="#3B82F6" d="M47,-62.1C58.4,-53.4,63.5,-36.4,66.1,-19.9C68.7,-3.3,68.8,12.7,63.2,26.4C57.7,40.1,46.5,51.4,33.5,58.8C20.5,66.2,5.7,69.7,-9.6,67.6C-24.9,65.5,-40.7,57.8,-52.1,46.3C-63.4,34.8,-70.3,19.5,-71.4,3.7C-72.5,-12.1,-67.8,-28.4,-58,-39.8C-48.2,-51.2,-33.3,-57.7,-19.1,-63.9C-4.9,-70.1,8.6,-76,25.4,-73.7C42.2,-71.4,47,-62.1,47,-62.1Z" transform="translate(200 200)" />
-    </svg>
-  </div>
-
+<section class="relative pt-12 pb-32 px-6 bg-grid">
+  <div class="absolute inset-0 bg-fade"></div>
+  
   <div class="relative max-w-4xl mx-auto text-center">
-    <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
-      Crystal Clear Water, <br><span class="text-blue-600 underline decoration-blue-200">Zero Guesswork.</span>
-    </h2>
-    <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-      Enter your pool readings below. We'll calculate the exact dosages needed to balance your water perfectly.
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-bold mb-8">
+      <span>🌿</span> AI-POWERED WATER ANALYSIS
+    </div>
+
+    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 text-slate-900">
+      Stop guessing.<br>
+      Start swimming <span class="text-emerald-700 italic">clearer.</span>
+    </h1>
+
+    <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+      Answer a few questions about your pool, and we'll recommend the exact chemicals you need — no markups, just honest science.
     </p>
+
+    <div class="flex flex-col items-center gap-4">
+        <div class="flex -space-x-2">
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-xs">👨‍🌾</div>
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-xs">👩‍🔬</div>
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-xs">🏊‍♂️</div>
+        </div>
+        <p class="text-sm text-slate-400 font-medium">
+            <span class="text-slate-900 font-bold">1,200+ pool owners</span> got their plan this week
+        </p>
+    </div>
   </div>
 </section>
 
-<section class="px-6 -mt-20 relative z-10">
-  <div class="max-w-2xl mx-auto">
-    <div class="glass-card border border-white rounded-3xl shadow-2xl shadow-blue-100 p-8">
-      
-      <div class="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
-        <div class="bg-blue-600 text-white p-3 rounded-2xl shadow-lg shadow-blue-200">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
+<section class="px-6 -mt-16">
+  <div class="max-w-3xl mx-auto bg-white border border-slate-200 rounded-[2rem] shadow-2xl shadow-slate-200/50 overflow-hidden">
+    
+    <div class="p-8 md:p-12">
+      <div class="grid md:grid-cols-2 gap-10">
+        
+        <div class="space-y-8">
+          <div>
+            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">Pool Volume</label>
+            <div class="flex items-end gap-3 border-b-2 border-slate-100 focus-within:border-emerald-600 transition-all pb-2">
+                <input id="gallons" type="number" placeholder="15000" class="w-full bg-transparent text-2xl font-bold outline-none placeholder:text-slate-200"/>
+                <span class="text-slate-400 font-bold text-sm mb-1">GAL</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-8">
+            <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">Current pH</label>
+                <input id="ph" type="number" step="0.1" placeholder="8.0" class="w-full bg-slate-50 rounded-xl p-4 text-xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
+            </div>
+            <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">Chlorine</label>
+                <input id="fc" type="number" step="0.1" placeholder="1.0" class="w-full bg-slate-50 rounded-xl p-4 text-xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">Alkalinity</label>
+            <input id="ta" type="number" placeholder="80" class="w-full bg-slate-50 rounded-xl p-4 text-xl font-bold border-2 border-transparent focus:border-emerald-600 focus:bg-white transition-all outline-none"/>
+          </div>
+
+          <button onclick="calculate()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-5 rounded-2xl font-bold text-lg shadow-lg shadow-emerald-200 transition-all flex items-center justify-center gap-3">
+            Get My Free Plan <span class="text-xl">→</span>
+          </button>
+          
+          <div class="flex justify-center gap-4 text-[11px] text-slate-400 font-bold uppercase tracking-widest">
+            <span>✅ Free</span>
+            <span>⏱ 30 Sec</span>
+            <span>🔒 No Spam</span>
+          </div>
         </div>
-        <div>
-          <h3 class="text-xl font-bold text-gray-900">Water Lab</h3>
-          <p class="text-sm text-gray-500">Input your current test results</p>
+
+        <div id="results" class="bg-slate-50 rounded-3xl p-8 flex flex-col justify-center items-center text-center border border-dashed border-slate-200">
+            <span class="text-4xl mb-4 opacity-50">🧪</span>
+            <p class="text-slate-400 font-medium">Your customized treatment plan will appear here.</p>
         </div>
+
       </div>
-
-      <div class="space-y-6">
-        <div>
-          <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Pool Volume (Gallons)</label>
-          <div class="relative">
-            <input id="gallons" type="number" placeholder="15000" class="w-full bg-gray-50 border-2 border-transparent focus:border-blue-400 focus:bg-white rounded-2xl p-4 pl-12 transition-all outline-none text-lg font-semibold"/>
-            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl">🏠</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="group">
-            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 text-center">Current pH</label>
-            <input id="ph" type="number" step="0.1" placeholder="7.2" class="w-full text-center bg-gray-50 border-2 border-transparent focus:border-blue-400 focus:bg-white rounded-2xl p-4 transition-all outline-none text-lg font-semibold"/>
-            <p class="text-[10px] text-center mt-2 text-blue-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity">GOAL: 7.4 - 7.6</p>
-          </div>
-
-          <div class="group">
-            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 text-center">Chlorine (ppm)</label>
-            <input id="fc" type="number" step="0.1" placeholder="1.0" class="w-full text-center bg-gray-50 border-2 border-transparent focus:border-blue-400 focus:bg-white rounded-2xl p-4 transition-all outline-none text-lg font-semibold"/>
-            <p class="text-[10px] text-center mt-2 text-blue-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity">GOAL: 1 - 3</p>
-          </div>
-
-          <div class="group">
-            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 text-center">Alkalinity</label>
-            <input id="ta" type="number" placeholder="80" class="w-full text-center bg-gray-50 border-2 border-transparent focus:border-blue-400 focus:bg-white rounded-2xl p-4 transition-all outline-none text-lg font-semibold"/>
-            <p class="text-[10px] text-center mt-2 text-blue-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity">GOAL: 80 - 120</p>
-          </div>
-        </div>
-
-        <button onclick="calculate()" class="w-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white py-5 rounded-2xl font-bold shadow-xl shadow-blue-100 transition-all text-lg flex items-center justify-center gap-2">
-          Calculate Treatment Plan
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </button>
-      </div>
-
-      <div id="results" class="mt-8"></div>
-
-    </div>
-
-    <div class="flex flex-wrap justify-center items-center gap-6 mt-10 text-gray-400 font-medium text-sm">
-      <div class="flex items-center gap-2">✨ Fast Results</div>
-      <div class="flex items-center gap-2">🔒 No Signup</div>
-      <div class="flex items-center gap-2">✅ Pro Formulas</div>
     </div>
   </div>
 </section>
 
-<section class="max-w-5xl mx-auto px-6 py-24">
-  <div class="flex items-end justify-between mb-10">
-    <div>
-      <h3 class="text-2xl font-bold text-gray-900">Essentials Toolkit</h3>
-      <p class="text-gray-500">The right tools for a perfect pool.</p>
+<section class="max-w-6xl mx-auto px-6 py-32">
+    <h3 class="text-3xl font-bold mb-12 tracking-tight">Essential Gear</h3>
+    <div class="grid md:grid-cols-3 gap-10">
+        <div class="group cursor-pointer">
+            <div class="aspect-square bg-white border border-slate-200 rounded-3xl mb-6 flex items-center justify-center text-5xl group-hover:shadow-xl transition-all">🧴</div>
+            <h4 class="text-xl font-bold mb-1">Liquid Chlorine</h4>
+            <p class="text-slate-500 text-sm mb-4">Pure sanitation without the buildup.</p>
+            <span class="text-emerald-700 font-bold text-sm group-hover:underline">Shop Amazon →</span>
+        </div>
+        <div class="group cursor-pointer">
+            <div class="aspect-square bg-white border border-slate-200 rounded-3xl mb-6 flex items-center justify-center text-5xl group-hover:shadow-xl transition-all">💎</div>
+            <h4 class="text-xl font-bold mb-1">Baking Soda</h4>
+            <p class="text-slate-500 text-sm mb-4">Professional-grade alkalinity balance.</p>
+            <span class="text-emerald-700 font-bold text-sm group-hover:underline">Shop Amazon →</span>
+        </div>
+        <div class="group cursor-pointer">
+            <div class="aspect-square bg-white border border-slate-200 rounded-3xl mb-6 flex items-center justify-center text-5xl group-hover:shadow-xl transition-all">🔥</div>
+            <h4 class="text-xl font-bold mb-1">Muriatic Acid</h4>
+            <p class="text-slate-500 text-sm mb-4">Precision pH control for safety.</p>
+            <span class="text-emerald-700 font-bold text-sm group-hover:underline">Shop Amazon →</span>
+        </div>
     </div>
-  </div>
-
-  <div class="grid md:grid-cols-3 gap-8">
-    <div class="group bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:shadow-blue-50 transition-all">
-      <div class="h-12 w-12 bg-orange-50 text-orange-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🧪</div>
-      <h4 class="text-xl font-bold mb-2">pH Management</h4>
-      <p class="text-gray-500 text-sm mb-6 leading-relaxed">Muriatic acid is the most efficient way to lower pH and keep your liners safe.</p>
-      <a href="#" class="inline-flex items-center font-bold text-blue-600 hover:text-blue-700">Shop on Amazon →</a>
-    </div>
-
-    <div class="group bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:shadow-blue-50 transition-all">
-      <div class="h-12 w-12 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">💧</div>
-      <h4 class="text-xl font-bold mb-2">Liquid Chlorine</h4>
-      <p class="text-gray-500 text-sm mb-6 leading-relaxed">Avoid stabilizer buildup by using high-quality liquid chlorine for daily sanitation.</p>
-      <a href="#" class="inline-flex items-center font-bold text-blue-600 hover:text-blue-700">Shop on Amazon →</a>
-    </div>
-
-    <div class="group bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:shadow-blue-50 transition-all">
-      <div class="h-12 w-12 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">🤖</div>
-      <h4 class="text-xl font-bold mb-2">Robotic Cleaners</h4>
-      <p class="text-gray-500 text-sm mb-6 leading-relaxed">Spend more time swimming and let a robot handle the debris on the floor.</p>
-      <a href="#" class="inline-flex items-center font-bold text-blue-600 hover:text-blue-700">Shop on Amazon →</a>
-    </div>
-  </div>
 </section>
-
-<footer class="bg-white border-t border-gray-100 py-12 text-center">
-  <p class="text-gray-400 text-sm font-medium">© 2026 Pool Chem Simplifier. Swim safe.</p>
-</footer>
 
 <script>
 function calculate() {
@@ -158,82 +152,49 @@ function calculate() {
   const ta = parseFloat(document.getElementById("ta").value);
 
   if (!gallons || !ph || !fc || !ta) {
-    alert("Please enter all your readings first!");
+    alert("Please fill in your readings.");
     return;
   }
 
-  const targetPH = 7.4;
-  const targetFC = 3;
-  const targetTA = 100;
+  let stepsHtml = `<div class="w-full text-left space-y-6">
+    <h4 class="text-2xl font-bold border-b border-slate-200 pb-4">Your Plan</h4>`;
+  
+  let step = 1;
 
-  let resultsDiv = document.getElementById("results");
-  let stepsHtml = "";
-  let stepCount = 0;
-
-  // PH LOGIC
-  if (ph > targetPH) {
-    let acid = (ph - targetPH) * 60 * (gallons / 10000);
-    stepsHtml += createStepCard("Lower pH", `${acid.toFixed(1)} oz`, "Muriatic Acid", "Increases comfort and prevents scale.", "bg-orange-100", "text-orange-700");
-    stepCount++;
-  } else if (ph < 7.2) {
-    let sodaAsh = (7.4 - ph) * 6 * (gallons / 10000);
-    stepsHtml += createStepCard("Raise pH", `${sodaAsh.toFixed(1)} oz`, "Soda Ash", "Prevents equipment corrosion.", "bg-red-100", "text-red-700");
-    stepCount++;
+  if (ph > 7.4) {
+    let acid = (ph - 7.4) * 60 * (gallons / 10000);
+    stepsHtml += createCard(step, "Muriatic Acid", `${acid.toFixed(1)} oz`, "Lower pH to prevent scale.");
+    step++;
   }
 
-  // CHLORINE LOGIC
-  if (fc < targetFC) {
-    let chlorine = (targetFC - fc) * 12.8 * (gallons / 10000);
-    stepsHtml += createStepCard("Sanitize", `${chlorine.toFixed(1)} oz`, "Liquid Chlorine", "Kills bacteria and prevents algae growth.", "bg-blue-100", "text-blue-700");
-    stepCount++;
+  if (fc < 3) {
+    let chlorine = (3 - fc) * 12.8 * (gallons / 10000);
+    stepsHtml += createCard(step, "Liquid Chlorine", `${chlorine.toFixed(1)} oz`, "Sanitize for safe swimming.");
+    step++;
   }
 
-  // ALKALINITY LOGIC
-  if (ta < targetTA) {
-    let soda = ((targetTA - ta) / 10) * 1.5 * (gallons / 10000);
-    stepsHtml += createStepCard("Balance TA", `${soda.toFixed(1)} lbs`, "Baking Soda", "Prevents pH swings and stabilizes water.", "bg-indigo-100", "text-indigo-700");
-    stepCount++;
+  if (ta < 100) {
+    let soda = ((100 - ta) / 10) * 1.5 * (gallons / 10000);
+    stepsHtml += createCard(step, "Baking Soda", `${soda.toFixed(1)} lbs`, "Stabilize water alkalinity.");
+    step++;
   }
 
-  if (stepCount === 0) {
-    resultsDiv.innerHTML = `
-      <div class="bg-green-50 border-2 border-green-100 rounded-3xl p-10 text-center animate-bounce-short">
-        <span class="text-5xl">✨</span>
-        <h4 class="text-green-800 text-2xl font-bold mt-4">Water is Perfect!</h4>
-        <p class="text-green-600 mt-2 font-medium">Enjoy your swim, no chemicals needed today.</p>
-      </div>`;
-  } else {
-    resultsDiv.innerHTML = `
-      <div class="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div class="flex items-center justify-between mb-4">
-            <h4 class="font-bold text-gray-900 text-lg">Your Treatment Plan</h4>
-            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">${stepCount} Steps</span>
-        </div>
-        ${stepsHtml}
-        <button onclick="window.print()" class="w-full mt-4 text-gray-400 hover:text-gray-600 text-sm font-medium transition-colors">
-          Print or Save as PDF
-        </button>
-      </div>`;
-  }
-
-  // Smooth scroll to results
-  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  stepsHtml += `</div>`;
+  
+  const resultsBox = document.getElementById("results");
+  resultsBox.innerHTML = stepsHtml;
+  resultsBox.className = "bg-white p-0 flex flex-col border-none";
 }
 
-function createStepCard(title, amount, chemical, desc, bgColor, textColor) {
-  return `
-    <div class="flex items-center gap-6 p-6 rounded-3xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-all group">
-      <div class="flex-shrink-0 h-14 w-14 ${bgColor} ${textColor} rounded-2xl flex items-center justify-center font-black text-xl group-hover:rotate-6 transition-transform">
-        ${amount.split(' ')[0]}
-      </div>
-      <div class="flex-grow">
-        <div class="flex justify-between items-start">
-            <h5 class="font-extrabold text-gray-900">${title}</h5>
-            <span class="text-[10px] font-bold uppercase tracking-widest ${textColor}">${chemical}</span>
+function createCard(num, chemical, dose, why) {
+    return `
+    <div class="flex gap-4">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs">${num}</div>
+        <div>
+            <p class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">${chemical}</p>
+            <p class="text-2xl font-black mb-1">${dose}</p>
+            <p class="text-xs text-slate-400">${why}</p>
         </div>
-        <p class="${textColor} font-black text-2xl">${amount}</p>
-        <p class="text-xs text-gray-400 mt-1 font-medium">${desc}</p>
-      </div>
     </div>`;
 }
 </script>
