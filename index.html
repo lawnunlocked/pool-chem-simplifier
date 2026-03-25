@@ -3,180 +3,573 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PoolChem | Professional Calibration</title>
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lora:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <title>PoolChem | Pool Chemical Calculator</title>
+  <meta name="color-scheme" content="light only">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4 { font-family: 'Lora', serif; }
-    
-    .bg-mesh {
-      background-color: #f8fafc;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.05) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.04) 0px, transparent 50%),
-        url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 0V1.5M1.5 30V28.5M0 1.5H1.5M30 1.5H28.5' stroke='%23e2e8f0' stroke-width='0.5'/%3E%3C/svg%3E");
-      background-attachment: fixed;
+    :root {
+      --water: #0ea5e9;
+      --deep: #0369a1;
+      --pool: #e0f2fe;
+      --surface: #f0f9ff;
+      --ink: #0c1a2e;
+      --muted: #64748b;
+      --line: #e2e8f0;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { color-scheme: light only; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--surface) !important;
+      color: var(--ink) !important;
+      -webkit-text-size-adjust: 100%;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(14,165,233,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 85% 110%, rgba(3,105,161,0.05) 0%, transparent 55%),
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(14,165,233,0.045) 39px, rgba(14,165,233,0.045) 40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page { position: relative; z-index: 1; }
+    .container { max-width: 560px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── Header ── */
+    .site-header {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 28px 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-icon {
+      background: var(--ink);
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-name { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--ink); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-link {
+      font-size: 12px; font-weight: 600; color: var(--muted);
+      text-decoration: none; padding: 6px 12px; border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-link:hover { background: white; color: var(--ink); }
+    .nav-link.active {
+      background: var(--pool); color: var(--deep);
+      border: 1px solid rgba(14,165,233,0.2);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 52px 20px 44px;
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--pool); border: 1px solid rgba(14,165,233,0.25);
+      border-radius: 99px; padding: 6px 14px; margin-bottom: 28px;
+    }
+    .hero-pill-dot {
+      width: 6px; height: 6px; background: var(--water);
+      border-radius: 50%; box-shadow: 0 0 0 3px rgba(14,165,233,0.2);
+      flex-shrink: 0;
+    }
+    .hero-pill-text { font-size: 10px; font-weight: 700; color: var(--deep); letter-spacing: 0.08em; text-transform: uppercase; }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.6rem, 8vw, 4rem);
+      line-height: 1.05; letter-spacing: -0.03em;
+      color: var(--ink); margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--water); font-style: italic; }
+    .hero p { color: var(--muted); font-size: 1rem; max-width: 360px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── Form card ── */
+    .form-card {
+      background: white; border-radius: 28px;
+      border: 1.5px solid var(--line);
+      box-shadow: 0 24px 80px rgba(12,26,46,0.08), 0 4px 16px rgba(12,26,46,0.04);
+      padding: 40px 32px; position: relative; overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .form-card-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--water), var(--deep)); }
+    .form-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--water); margin-bottom: 8px; }
+    .form-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--ink); line-height: 1.2; margin-bottom: 36px; }
+
+    /* ── Fields ── */
+    .field-block { margin-bottom: 20px; }
+    .field-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .field-wrap {
+      position: relative; background: #f8fafc;
+      border: 1.5px solid var(--line); border-radius: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .field-wrap:focus-within { background: white; border-color: var(--water); box-shadow: 0 0 0 4px rgba(14,165,233,0.1); }
+    .field-label {
+      position: absolute; top: 11px; left: 16px;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); pointer-events: none;
+    }
+    .field-wrap input {
+      width: 100%; background: transparent; border: none; outline: none;
+      padding: 28px 46px 12px 16px;
+      font-size: 1.4rem; font-weight: 700; font-family: 'DM Mono', monospace; color: var(--ink);
+    }
+    .field-wrap input::placeholder { color: #dde3ec; font-weight: 400; }
+    .field-unit {
+      position: absolute; right: 14px; bottom: 14px;
+      font-size: 11px; font-weight: 600; color: #94a3b8;
+      font-family: 'DM Mono', monospace; pointer-events: none;
+    }
+    .field-hint { font-size: 10px; color: #94a3b8; font-family: 'DM Mono', monospace; margin-top: 6px; padding-left: 4px; }
+
+    .section-divider { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .section-divider-label { font-size: 9px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #cbd5e1; white-space: nowrap; }
+    .section-divider-line { flex: 1; height: 1px; background: #f1f5f9; }
+
+    /* ── Button ── */
+    .calc-btn {
+      width: 100%; background: var(--ink); color: white;
+      padding: 18px; border-radius: 14px; font-size: 1rem;
+      font-weight: 700; font-family: 'Outfit', sans-serif;
+      cursor: pointer; border: none; letter-spacing: 0.02em;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .calc-btn:hover { background: var(--deep); }
+    .calc-btn:active { transform: scale(0.985); }
+    .btn-meta { display: flex; justify-content: center; gap: 20px; margin-top: 16px; }
+    .btn-meta span { font-size: 10px; color: #b0bec5; font-weight: 600; letter-spacing: 0.04em; }
+
+    /* ── Results ── */
+    #results { display: none; }
+    .results-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .results-header-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .results-header-line { flex: 1; height: 1px; background: var(--line); }
+
+    /* LSI card */
+    .lsi-card { background: var(--ink); border-radius: 22px; padding: 28px; margin-bottom: 14px; color: white; animation: slideUp 0.4s ease both; }
+    .lsi-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+    .lsi-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.35; margin-bottom: 10px; }
+    .lsi-number { font-family: 'DM Mono', monospace; font-size: 3rem; font-weight: 500; line-height: 1; }
+    .lsi-badge { padding: 6px 14px; border-radius: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; align-self: flex-start; }
+    .lsi-bar-track { height: 6px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden; margin-bottom: 14px; }
+    .lsi-bar-fill { height: 100%; border-radius: 99px; width: 0%; transition: width 0.9s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .lsi-desc { font-size: 12.5px; opacity: 0.5; line-height: 1.65; }
+
+    /* Action cards */
+    .action-card { border-radius: 20px; border: 1.5px solid; padding: 22px; margin-bottom: 14px; animation: slideUp 0.4s ease both; }
+    .action-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+    .action-icon { font-size: 1.05rem; line-height: 1.4; flex-shrink: 0; }
+    .action-title-wrap { flex: 1; min-width: 0; }
+    .action-title { font-weight: 700; font-size: 0.95rem; color: var(--ink); line-height: 1.3; }
+    .action-dose {
+      display: inline-block; margin-top: 6px;
+      font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600;
+      padding: 3px 10px; border-radius: 6px;
+    }
+    .action-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* Product card */
+    .product-card {
+      display: block; background: white; border: 1.5px solid var(--line);
+      border-radius: 14px; padding: 16px; margin-top: 14px;
+      text-decoration: none; transition: border-color 0.2s, box-shadow 0.15s, transform 0.15s;
+    }
+    .product-card:hover { border-color: var(--water); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(14,165,233,0.1); }
+    .product-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .product-emoji {
+      width: 46px; height: 46px; border-radius: 10px;
+      background: var(--pool); border: 1px solid rgba(14,165,233,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; flex-shrink: 0;
+    }
+    .product-info { flex: 1; min-width: 0; }
+    .product-name { font-size: 12.5px; font-weight: 700; color: var(--ink); line-height: 1.4; margin-bottom: 4px; }
+    .product-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .stars { color: #f59e0b; font-size: 10px; letter-spacing: 0.5px; }
+    .product-rating { font-size: 10px; color: var(--muted); font-family: 'DM Mono', monospace; }
+    .product-tag { font-size: 9px; font-weight: 700; color: var(--deep); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+    .amazon-btn {
+      display: block; width: 100%; background: #FF9900; color: #111;
+      font-size: 12px; font-weight: 700; font-family: 'Outfit', sans-serif;
+      padding: 10px 14px; border-radius: 9px; text-align: center;
+      transition: background 0.15s;
+    }
+    .amazon-btn:hover { background: #e68a00; }
+
+    .disclaimer { text-align: center; margin-top: 24px; font-size: 10px; color: #94a3b8; line-height: 1.8; padding-bottom: 8px; }
+
+    @keyframes slideUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+
+    .site-footer { text-align: center; padding: 16px 20px 52px; font-size: 10px; color: #b0bec5; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
   </style>
 </head>
 
-<body class="bg-mesh min-h-screen text-slate-900">
+<body>
+<div class="page">
 
-<header class="max-w-6xl mx-auto px-6 py-10 flex justify-between items-center">
-  <div class="flex items-center gap-3">
-    <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white font-black text-xl italic">P</div>
-    <span class="font-bold tracking-tight text-xl uppercase">PoolChem</span>
-  </div>
-  <div class="bg-blue-50 text-blue-700 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest">
-    V2.0 Beta
-  </div>
-</header>
-
-<section class="pt-8 pb-16 px-6">
-  <div class="max-w-3xl mx-auto text-center">
-    <h1 class="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] mb-8">
-      Crystal Clear Water,<br>
-      <span class="text-blue-700 underline decoration-blue-100 underline-offset-8">Zero Guesswork.</span>
-    </h1>
-    <p class="text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
-      Enter your pool readings below. We'll calculate the exact dosages needed to balance your water perfectly.
-    </p>
-  </div>
-</section>
-
-<section id="calculator" class="px-4 pb-24">
-  <div class="max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-[0_40px_100px_rgba(0,0,0,0.06)] border border-white p-10 md:p-14">
-      
-      <div class="flex items-center gap-4 mb-12">
-          <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-100">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <div>
-              <h3 class="text-xl font-bold text-slate-900">Water Lab</h3>
-              <p class="text-xs font-medium text-slate-400">Input your current test results</p>
-          </div>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+          <path d="M2 12c2-4 4-6 6-6s4 4 6 4 4-4 6-4"/>
+          <path d="M2 18c2-4 4-6 6-6s4 4 6 4 4-4 6-4" opacity="0.5"/>
+        </svg>
       </div>
-
-      <div class="space-y-10">
-        <div class="group">
-          <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Pool Volume (Gallons)</label>
-          <div class="flex items-center gap-4 bg-slate-50 rounded-2xl p-4 group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-blue-600 transition-all">
-              <span class="text-xl">🏠</span>
-              <input id="gallons" type="number" placeholder="15000" class="w-full bg-transparent text-2xl font-bold outline-none"/>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-8">
-          <div class="group">
-              <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 text-center">Current pH</label>
-              <input id="ph" type="number" step="0.1" placeholder="8.0" class="w-full bg-slate-50 rounded-2xl p-5 text-2xl font-bold outline-none text-center group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-blue-600 transition-all"/>
-          </div>
-          <div class="group">
-              <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 text-center">Alkalinity</label>
-              <input id="ta" type="number" placeholder="95" class="w-full bg-slate-50 rounded-2xl p-5 text-2xl font-bold outline-none text-center group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-blue-600 transition-all"/>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-8 opacity-60 hover:opacity-100 transition-opacity">
-            <div class="group text-center">
-                <label class="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Calcium</label>
-                <input id="ch" type="number" placeholder="250" class="w-full bg-transparent border-b border-slate-200 py-2 text-lg font-bold outline-none text-center focus:border-blue-600 transition-all"/>
-            </div>
-            <div class="group text-center">
-                <label class="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">CYA</label>
-                <input id="cya" type="number" placeholder="40" class="w-full bg-transparent border-b border-slate-200 py-2 text-lg font-bold outline-none text-center focus:border-blue-600 transition-all"/>
-            </div>
-        </div>
-
-        <button onclick="calculateAdvanced()" class="w-full bg-slate-900 text-white py-6 rounded-2xl font-bold text-lg shadow-xl shadow-slate-100 transition-all hover:bg-blue-700 flex items-center justify-center gap-3 active:scale-[0.98]">
-          Get My Free Plan <span class="opacity-50">→</span>
-        </button>
-
-        <div class="flex justify-center gap-6 text-[10px] text-slate-400 font-bold">
-            <span class="flex items-center gap-1.5">✅ Free</span>
-            <span class="flex items-center gap-1.5">⏱ 30 Sec</span>
-            <span class="flex items-center gap-1.5">🔒 No Spam</span>
-        </div>
-
-        <div id="results" class="empty:hidden mt-4 pt-10 border-t border-slate-50 space-y-6"></div>
-      </div>
-  </div>
-</section>
-
-<footer class="text-center pb-20 opacity-30 text-[10px] font-black uppercase tracking-[0.3em]">
-  © 2026 PoolChem • Zebulon, NC
-</footer>
-
-<script>
-function calculateAdvanced() {
-  const vol = parseFloat(document.getElementById("gallons").value);
-  const ph = parseFloat(document.getElementById("ph").value);
-  const ta = parseFloat(document.getElementById("ta").value);
-  const ch = parseFloat(document.getElementById("ch").value) || 250;
-  const cya = parseFloat(document.getElementById("cya").value) || 40;
-
-  if (!vol || !ph || !ta) { alert("Please fill in your primary readings."); return; }
-
-  // PRO BACKEND MATH
-  const correctedTA = ta - (cya * 0.33);
-  const lsi = ph + 0.7 + Math.log10(ch) + Math.log10(correctedTA) - 12.1;
-  
-  let lsiStatus = "Balanced";
-  let lsiColor = "bg-blue-600";
-  if (lsi < -0.3) { lsiStatus = "Corrosive"; lsiColor = "bg-orange-600"; }
-  if (lsi > 0.3) { lsiStatus = "Scaling"; lsiColor = "bg-purple-600"; }
-
-  let html = `
-    <div class="p-8 rounded-3xl bg-slate-900 text-white shadow-2xl">
-      <div class="flex justify-between items-start mb-4">
-        <div>
-            <p class="text-[9px] font-black uppercase tracking-widest opacity-40 mb-1">Water Health Score (LSI)</p>
-            <h3 class="text-4xl font-black">${lsi.toFixed(2)}</h3>
-        </div>
-        <span class="${lsiColor} text-white text-[9px] font-black px-3 py-1 rounded uppercase tracking-tighter">${lsiStatus}</span>
-      </div>
-      <p class="text-[11px] opacity-60 leading-relaxed">
-        ${lsi < -0.3 ? "Your water is aggressive and may etch surfaces." : 
-          lsi > 0.3 ? "Calcium scale buildup is likely at this level." : 
-          "Perfectly balanced environment for swimmers and equipment."}
-      </p>
+      <span class="logo-name">PoolChem</span>
     </div>
-  `;
+    <nav class="nav-links">
+      <a href="#" class="nav-link active">Calculator</a>
+      <a href="#" class="nav-link">Products</a>
+    </nav>
+  </header>
 
-  // ACTIONS
-  if (ph > 7.5) {
-    let dose = (ph - 7.5) * 12 * (vol / 10000);
-    html += createAction("Lower pH", `${dose.toFixed(1)} oz`, "Muriatic Acid (31%)");
-  }
-  if (ta < 80) {
-      let dose = (100 - ta) * 1.5 * (vol / 10000);
-      html += createAction("Raise Alkalinity", `${dose.toFixed(1)} lbs`, "Baking Soda");
-  }
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      <span class="hero-pill-text">AI-Powered Dosage Calculator</span>
+    </div>
+    <h1>Balanced water.<br><em>Exact doses.</em></h1>
+    <p>Enter your test strip readings. Get precise chemical dosages and the exact products to fix it.</p>
+  </section>
 
-  document.getElementById("results").innerHTML = html;
-  document.getElementById("results").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  <!-- CALCULATOR -->
+  <main class="container" style="padding-bottom:100px;">
+    <div class="form-card">
+      <div class="form-card-bar"></div>
+      <div class="form-eyebrow">Water Analysis</div>
+      <div class="form-title">Enter Your Test Readings</div>
+
+      <!-- Pool Volume -->
+      <div class="field-block">
+        <div class="field-wrap">
+          <span class="field-label">Pool Volume</span>
+          <input id="gallons" type="number" placeholder="15000" inputmode="numeric"/>
+          <span class="field-unit">gal</span>
+        </div>
+        <div class="field-hint">Typical residential: 10,000 – 30,000 gal</div>
+      </div>
+
+      <div class="section-divider">
+        <span class="section-divider-label">Chemical Readings</span>
+        <div class="section-divider-line"></div>
+      </div>
+
+      <!-- Chlorine + pH -->
+      <div class="field-grid-2">
+        <div>
+          <div class="field-wrap">
+            <span class="field-label">Free Chlorine</span>
+            <input id="cl" type="number" step="0.1" placeholder="1.5" inputmode="decimal"/>
+            <span class="field-unit">ppm</span>
+          </div>
+          <div class="field-hint" style="text-align:center;">1 – 3 ppm</div>
+        </div>
+        <div>
+          <div class="field-wrap">
+            <span class="field-label">pH Level</span>
+            <input id="ph" type="number" step="0.1" placeholder="7.4" inputmode="decimal"/>
+            <span class="field-unit">pH</span>
+          </div>
+          <div class="field-hint" style="text-align:center;">7.2 – 7.6</div>
+        </div>
+      </div>
+
+      <!-- Alkalinity + CYA -->
+      <div class="field-grid-2">
+        <div>
+          <div class="field-wrap">
+            <span class="field-label">Total Alkalinity</span>
+            <input id="ta" type="number" placeholder="100" inputmode="numeric"/>
+            <span class="field-unit">ppm</span>
+          </div>
+          <div class="field-hint" style="text-align:center;">80 – 120 ppm</div>
+        </div>
+        <div>
+          <div class="field-wrap">
+            <span class="field-label">CYA / Stabilizer</span>
+            <input id="cya" type="number" placeholder="40" inputmode="numeric"/>
+            <span class="field-unit">ppm</span>
+          </div>
+          <div class="field-hint" style="text-align:center;">30 – 50 ppm</div>
+        </div>
+      </div>
+
+      <!-- Calcium Hardness -->
+      <div class="field-block" style="margin-bottom:36px;">
+        <div class="field-wrap">
+          <span class="field-label">Calcium Hardness</span>
+          <input id="ch" type="number" placeholder="250" inputmode="numeric"/>
+          <span class="field-unit">ppm</span>
+        </div>
+        <div class="field-hint">200 – 400 ppm</div>
+      </div>
+
+      <button class="calc-btn" onclick="calculateAll()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="opacity:0.65;">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        Analyze My Pool Water
+      </button>
+      <div class="btn-meta">
+        <span>✓ Free forever</span>
+        <span>✓ Instant results</span>
+        <span>✓ No signup</span>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results">
+      <div class="results-header">
+        <span class="results-header-label">Your Water Report</span>
+        <div class="results-header-line"></div>
+      </div>
+
+      <div class="lsi-card">
+        <div class="lsi-top">
+          <div>
+            <div class="lsi-eyebrow">Water Balance Index (LSI)</div>
+            <div id="lsi-value" class="lsi-number"></div>
+          </div>
+          <div id="lsi-badge" class="lsi-badge"></div>
+        </div>
+        <div class="lsi-bar-track">
+          <div id="lsi-bar" class="lsi-bar-fill"></div>
+        </div>
+        <div id="lsi-description" class="lsi-desc"></div>
+      </div>
+
+      <div id="action-cards"></div>
+
+      <div class="disclaimer">
+        Dosages are estimates based on standard formulas. Always follow product label instructions.<br>
+        <span style="opacity:0.6;">As an Amazon Associate, PoolChem earns from qualifying purchases.</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">© 2026 PoolChem · Zebulon, NC</footer>
+
+</div>
+<script>
+const PRODUCTS = {
+  muriaticAcid: { emoji:'🧪', name:'Klean Strip Green Muriatic Acid',       rating:'4.7', reviews:'2,341', tag:'Best Seller', href:'https://www.amazon.com/s?k=muriatic+acid+pool&tag=YOUR-TAG' },
+  sodaAsh:      { emoji:'🫧', name:'Clorox Pool & Spa pH Up',                rating:'4.6', reviews:'3,102', tag:'Top Rated',   href:'https://www.amazon.com/s?k=pool+ph+up+soda+ash&tag=YOUR-TAG' },
+  bakingSoda:   { emoji:'🥤', name:'Arm & Hammer Pool Baking Soda',          rating:'4.8', reviews:'5,811', tag:'#1 Choice',   href:'https://www.amazon.com/s?k=baking+soda+pool+alkalinity&tag=YOUR-TAG' },
+  liquidChlor:  { emoji:'💧', name:'In The Swim Liquid Chlorine',            rating:'4.7', reviews:'4,509', tag:'Fast Acting', href:'https://www.amazon.com/s?k=liquid+pool+chlorine&tag=YOUR-TAG' },
+  shock:        { emoji:'⚡', name:'In The Swim Cal-Hypo Pool Shock',        rating:'4.8', reviews:'8,274', tag:'Best Seller', href:'https://www.amazon.com/s?k=pool+shock+cal+hypo&tag=YOUR-TAG' },
+  stabilizer:   { emoji:'🛡️', name:'Clorox Pool & Spa Stabilizer',          rating:'4.7', reviews:'6,103', tag:'Essential',   href:'https://www.amazon.com/s?k=pool+cyanuric+acid+stabilizer&tag=YOUR-TAG' },
+  calciumUp:    { emoji:'💎', name:'Clorox Pool Calcium Hardness Increaser', rating:'4.6', reviews:'2,077', tag:'Popular',     href:'https://www.amazon.com/s?k=pool+calcium+hardness+increaser&tag=YOUR-TAG' },
+  flocculant:   { emoji:'🌀', name:'HTH Super Clarifier & Flocculant',       rating:'4.5', reviews:'3,288', tag:'Quick Fix',   href:'https://www.amazon.com/s?k=pool+flocculant+clarifier&tag=YOUR-TAG' },
+};
+
+function productCard(p) {
+  const stars = '★'.repeat(Math.floor(p.rating)) + '☆'.repeat(5 - Math.floor(p.rating));
+  return `
+    <a href="${p.href}" target="_blank" rel="noopener" class="product-card">
+      <div class="product-top">
+        <div class="product-emoji">${p.emoji}</div>
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-meta">
+            <span class="stars">${stars}</span>
+            <span class="product-rating">${p.rating} (${p.reviews})</span>
+          </div>
+          <div class="product-tag">${p.tag}</div>
+        </div>
+      </div>
+      <div class="amazon-btn">View on Amazon →</div>
+    </a>`;
 }
 
-function createAction(title, amt, chem) {
+function actionCard(severity, icon, title, dose, description, productKeys, delay) {
+  const palette = {
+    high:   { bg:'#fff1f1', border:'#fca5a5', doseBg:'#fee2e2', doseColor:'#dc2626' },
+    medium: { bg:'#fffbeb', border:'#fde68a', doseBg:'#fef3c7', doseColor:'#b45309' },
+    good:   { bg:'#f0fdf4', border:'#86efac', doseBg:'#dcfce7', doseColor:'#15803d' },
+    info:   { bg:'#f0f9ff', border:'#7dd3fc', doseBg:'#e0f2fe', doseColor:'#0369a1' },
+  };
+  const c = palette[severity] || palette.info;
+  const doseHtml = dose
+    ? `<div class="action-dose" style="background:${c.doseBg}; color:${c.doseColor};">${dose}</div>`
+    : '';
+  const productsHtml = productKeys.map(k => PRODUCTS[k] ? productCard(PRODUCTS[k]) : '').join('');
   return `
-    <div class="p-8 rounded-3xl border border-slate-100 flex items-center justify-between group bg-white shadow-sm">
-      <div class="max-w-[60%]">
-        <p class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-1">${title}</p>
-        <h4 class="text-3xl font-black text-slate-900">${amt}</h4>
-        <p class="text-[10px] font-bold text-slate-400 mt-1 italic">${chem}</p>
+    <div class="action-card" style="background:${c.bg}; border-color:${c.border}; animation-delay:${delay}s;">
+      <div class="action-header">
+        <span class="action-icon">${icon}</span>
+        <div class="action-title-wrap">
+          <div class="action-title">${title}</div>
+          ${doseHtml}
+        </div>
       </div>
-      <a href="#" class="text-[10px] font-black uppercase tracking-widest text-slate-300 group-hover:text-blue-600 transition-colors">
-        View Pro Grade →
-      </a>
-    </div>
-  `;
+      <p class="action-desc">${description}</p>
+      ${productsHtml}
+    </div>`;
+}
+
+function calculateAll() {
+  const vol = parseFloat(document.getElementById('gallons').value);
+  const ph  = parseFloat(document.getElementById('ph').value);
+  const ta  = parseFloat(document.getElementById('ta').value);
+  const cl  = parseFloat(document.getElementById('cl').value);
+  const cya = parseFloat(document.getElementById('cya').value) || 40;
+  const ch  = parseFloat(document.getElementById('ch').value) || 250;
+
+  if (!vol || !ph || !ta || !cl) {
+    alert('Please fill in pool volume, chlorine, pH, and alkalinity.');
+    return;
+  }
+
+  const correctedTA = Math.max(ta - (cya * 0.33), 10);
+  const lsi = ph + 0.8 + Math.log10(Math.max(ch, 1)) + Math.log10(correctedTA) - 12.1;
+
+  let lsiColor = '#22c55e', lsiLabel = 'Balanced', lsiBarWidth = 60;
+  let lsiDesc  = 'Your water chemistry is in the ideal range. Surfaces and equipment are protected.';
+  if      (lsi < -0.5) { lsiColor='#f97316'; lsiLabel='Corrosive';          lsiBarWidth=12; lsiDesc='Aggressive water is etching plaster and corroding metal fittings. Raise pH and alkalinity.'; }
+  else if (lsi < -0.3) { lsiColor='#fb923c'; lsiLabel='Slightly Corrosive'; lsiBarWidth=30; lsiDesc='Water is mildly aggressive. Small adjustments to pH or calcium hardness will fix this.'; }
+  else if (lsi >  0.5) { lsiColor='#a855f7'; lsiLabel='Scaling';            lsiBarWidth=92; lsiDesc='Heavy scale deposits are forming on surfaces and in equipment. Lower pH and alkalinity.'; }
+  else if (lsi >  0.3) { lsiColor='#c084fc'; lsiLabel='Slightly Scaling';   lsiBarWidth=75; lsiDesc='Mild scaling tendency. A small pH reduction will bring this into balance.'; }
+
+  document.getElementById('lsi-value').textContent       = lsi.toFixed(2);
+  document.getElementById('lsi-badge').textContent       = lsiLabel;
+  document.getElementById('lsi-badge').style.background  = lsiColor + '28';
+  document.getElementById('lsi-badge').style.color       = lsiColor;
+  document.getElementById('lsi-description').textContent = lsiDesc;
+  setTimeout(() => {
+    document.getElementById('lsi-bar').style.width      = lsiBarWidth + '%';
+    document.getElementById('lsi-bar').style.background = lsiColor;
+  }, 80);
+
+  const cards = [];
+  let d = 0.05;
+
+  // CHLORINE
+  if (cl < 1) {
+    const oz = ((1.5 - cl) * (vol / 10000) * 16).toFixed(0);
+    cards.push(actionCard('high', '⚠️', 'Chlorine Dangerously Low', `${oz} fl oz liquid chlorine`,
+      `Free chlorine at ${cl} ppm is critically low. Bacteria and algae can take hold within hours. Add liquid chlorine or shock immediately and retest in 4 hours.`,
+      ['liquidChlor', 'shock'], d)); d += 0.06;
+  } else if (cl < 1.5) {
+    const lbs = ((2 - cl) * (vol / 10000)).toFixed(1);
+    cards.push(actionCard('medium', '🔶', 'Chlorine Below Target', `${lbs} lbs shock`,
+      `At ${cl} ppm you're below the ideal 1–3 ppm range. Boost with a maintenance dose of shock, especially before heavy swimmer use.`,
+      ['shock', 'liquidChlor'], d)); d += 0.06;
+  } else if (cl > 5) {
+    cards.push(actionCard('medium', '🚫', 'Chlorine Too High', null,
+      `At ${cl} ppm chlorine is irritating to eyes and skin. Stop adding chlorine and keep the pool uncovered in sunlight. UV will naturally reduce it — retest every few hours.`,
+      [], d)); d += 0.06;
+  } else {
+    cards.push(actionCard('good', '✅', 'Chlorine: Perfect', `${cl} ppm`,
+      `Free chlorine is in the ideal 1–3 ppm range. Maintain with your normal tablet or liquid chlorine routine.`,
+      [], d)); d += 0.06;
+  }
+
+  // pH
+  if (ph > 7.8) {
+    const oz = ((ph - 7.5) * 14 * (vol / 10000)).toFixed(1);
+    cards.push(actionCard('high', '🔴', 'pH Too High — Lower It', `${oz} fl oz muriatic acid`,
+      `pH of ${ph} causes chlorine to lose up to 80% of its sanitizing power and leads to scale. Add muriatic acid to the deep end with the pump running. Retest after 4 hours.`,
+      ['muriaticAcid'], d)); d += 0.06;
+  } else if (ph > 7.6) {
+    const oz = ((ph - 7.5) * 10 * (vol / 10000)).toFixed(1);
+    cards.push(actionCard('medium', '🟡', 'pH Slightly High', `${oz} fl oz muriatic acid`,
+      `At ${ph}, a small dose of acid will bring pH to the ideal 7.4–7.6 sweet spot. Add slowly and retest.`,
+      ['muriaticAcid'], d)); d += 0.06;
+  } else if (ph < 7.0) {
+    const lbs = ((7.4 - ph) * 6 * (vol / 10000)).toFixed(2);
+    cards.push(actionCard('high', '🔴', 'pH Too Low — Raise It', `${lbs} lbs soda ash`,
+      `pH of ${ph} is aggressive to swimmers and corrodes pool surfaces. Broadcast soda ash across the pool with the pump running.`,
+      ['sodaAsh'], d)); d += 0.06;
+  } else if (ph < 7.2) {
+    const lbs = ((7.4 - ph) * 4 * (vol / 10000)).toFixed(2);
+    cards.push(actionCard('medium', '🟡', 'pH Slightly Low', `${lbs} lbs soda ash`,
+      `At ${ph}, a small pH increase will optimize chlorine effectiveness and swimmer comfort.`,
+      ['sodaAsh'], d)); d += 0.06;
+  } else {
+    cards.push(actionCard('good', '✅', 'pH: Perfect', `${ph}`,
+      `pH is in the ideal 7.2–7.6 range. Chlorine is fully effective and swimmers will be comfortable.`,
+      [], d)); d += 0.06;
+  }
+
+  // ALKALINITY
+  if (ta < 70) {
+    const lbs = (((80 - ta) * 1.5 * vol) / 10000).toFixed(1);
+    cards.push(actionCard('high', '🔻', 'Alkalinity Too Low', `${lbs} lbs baking soda`,
+      `At ${ta} ppm, low alkalinity causes pH to swing wildly. Add baking soda broadcast across the surface.`,
+      ['bakingSoda'], d)); d += 0.06;
+  } else if (ta < 80) {
+    const lbs = (((90 - ta) * 1.5 * vol) / 10000).toFixed(1);
+    cards.push(actionCard('medium', '🟡', 'Alkalinity Slightly Low', `${lbs} lbs baking soda`,
+      `At ${ta} ppm, just under the 80–120 ppm target. A small baking soda dose will stabilize pH.`,
+      ['bakingSoda'], d)); d += 0.06;
+  } else if (ta > 140) {
+    cards.push(actionCard('medium', '🔺', 'Alkalinity Too High', null,
+      `At ${ta} ppm, high alkalinity locks pH high and resists adjustment. Lower by adding muriatic acid in small doses over several days, aerating between doses.`,
+      ['muriaticAcid'], d)); d += 0.06;
+  } else {
+    cards.push(actionCard('good', '✅', 'Alkalinity: Good', `${ta} ppm`,
+      `Total alkalinity is within the 80–120 ppm range. pH should hold stable between adjustments.`,
+      [], d)); d += 0.06;
+  }
+
+  // CYA
+  if (cya < 20) {
+    const lbs = (((40 - cya) * vol) / 100000).toFixed(2);
+    cards.push(actionCard('high', '☀️', 'Stabilizer Too Low', `${lbs} lbs cyanuric acid`,
+      `Without stabilizer, UV destroys 90% of your chlorine within 2 hours of sun exposure. Add to the skimmer slowly over several days.`,
+      ['stabilizer'], d)); d += 0.06;
+  } else if (cya < 30) {
+    const lbs = (((40 - cya) * vol) / 100000).toFixed(2);
+    cards.push(actionCard('medium', '🟡', 'Stabilizer Low', `${lbs} lbs cyanuric acid`,
+      `CYA at ${cya} ppm is below the 30–50 ppm outdoor target. Sunlight is burning through your chlorine faster than it should.`,
+      ['stabilizer'], d)); d += 0.06;
+  } else if (cya > 80) {
+    cards.push(actionCard('medium', '🚨', 'Stabilizer Too High', 'Partial drain needed',
+      `At ${cya} ppm, chlorine lock prevents effective sanitizing. The only fix is a 25–30% drain and refill with fresh water.`,
+      [], d)); d += 0.06;
+  }
+
+  // CALCIUM
+  if (ch < 150) {
+    const lbs = (((200 - ch) * 1.25 * vol) / 10000).toFixed(1);
+    cards.push(actionCard('medium', '💧', 'Calcium Hardness Low', `${lbs} lbs calcium chloride`,
+      `Soft water at ${ch} ppm pulls calcium from plaster and grout. Add calcium chloride and retest after 24 hours.`,
+      ['calciumUp'], d)); d += 0.06;
+  } else if (ch > 500) {
+    cards.push(actionCard('medium', '💎', 'Calcium Hardness High', 'Partial drain needed',
+      `At ${ch} ppm, calcium near saturation will deposit on surfaces and in equipment. Partially drain and refill to dilute.`,
+      ['flocculant'], d)); d += 0.06;
+  }
+
+  document.getElementById('action-cards').innerHTML = cards.join('');
+  document.getElementById('results').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
 }
 </script>
-
 </body>
 </html>
