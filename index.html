@@ -33,36 +33,29 @@
     <span class="font-bold tracking-tight text-xl">PoolChem</span>
   </div>
   
-  <a href="#product-guide" class="group flex items-center gap-2 bg-white border border-slate-200 pl-4 pr-2 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all">
-    <span class="text-[10px] font-black uppercase tracking-widest text-slate-500 group-hover:text-blue-700">Product Guide</span>
-    <span class="bg-blue-50 text-blue-600 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">→</span>
-  </a>
+  <div class="flex items-center gap-4">
+    <a href="#product-guide" class="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-700 transition-colors">Equipment Guide</a>
+    <a href="#calculator" class="bg-white border border-slate-200 pl-4 pr-2 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2">
+      <span class="text-[10px] font-black uppercase tracking-widest text-blue-700">Calculate</span>
+      <span class="bg-blue-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">→</span>
+    </a>
+  </div>
 </header>
 
 <section class="pt-12 pb-24 px-6">
   <div class="max-w-4xl mx-auto text-center">
     <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] mb-8 text-slate-900">
       Stop guessing.<br>
-      Start swimming <span class="text-blue-700 italic underline decoration-blue-200">clearer.</span>
+      Start swimming <span class="text-blue-700 italic underline decoration-blue-200 decoration-4 underline-offset-8">clearer.</span>
     </h1>
     <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-      Pro-grade LSI calibration simplified for your backyard. Enter your readings to see exactly what your water needs.
+      The same LSI calibration logic used by professional pool operators, simplified for your backyard.
     </p>
-    <div class="flex flex-col items-center gap-4">
-        <div class="flex -space-x-2">
-            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] shadow-sm">💧</div>
-            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] shadow-sm">🏊‍♂️</div>
-            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] shadow-sm">🧪</div>
-        </div>
-        <p class="text-[11px] text-slate-400 font-black uppercase tracking-[0.2em]">
-            Trusted by <span class="text-slate-900 font-bold">1,200+ homeowners</span> this season
-        </p>
-    </div>
   </div>
 </section>
 
 <section id="calculator" class="px-4 -mt-12 relative z-10">
-  <div class="max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-[0_20px_60px_rgba(30,58,138,0.08)] border border-white p-8 md:p-12">
+  <div class="max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-[0_30px_70px_rgba(30,58,138,0.1)] border border-white p-8 md:p-12">
       <div class="space-y-8">
         <div>
           <label class="block text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Pool Volume</label>
@@ -78,7 +71,7 @@
             <input id="ph" type="number" step="0.1" placeholder="7.5" class="w-full bg-slate-50 rounded-xl p-4 text-xl font-bold border-2 border-transparent focus:border-blue-600 outline-none text-slate-900"/>
           </div>
           <div class="space-y-2">
-            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Alkalinity (ppm)</label>
+            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Alkalinity</label>
             <input id="ta" type="number" placeholder="100" class="w-full bg-slate-50 rounded-xl p-4 text-xl font-bold border-2 border-transparent focus:border-blue-600 outline-none text-slate-900"/>
           </div>
           <div class="space-y-2">
@@ -86,13 +79,13 @@
             <input id="ch" type="number" placeholder="250" class="w-full bg-slate-50 rounded-xl p-4 text-xl font-bold border-2 border-transparent focus:border-blue-600 outline-none text-center text-slate-900"/>
           </div>
           <div class="space-y-2">
-            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 text-center block">CYA (Stabilizer)</label>
+            <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 text-center block">CYA</label>
             <input id="cya" type="number" placeholder="40" class="w-full bg-slate-50 rounded-xl p-4 text-xl font-bold border-2 border-transparent focus:border-blue-600 outline-none text-center text-slate-900"/>
           </div>
         </div>
 
         <button onclick="calculateAdvanced()" class="w-full bg-blue-900 hover:bg-blue-950 text-white py-5 rounded-2xl font-bold text-lg shadow-xl shadow-blue-100 transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
-          Calculate Dosages <span class="opacity-40 text-sm">→</span>
+          Run Calibration <span class="opacity-40 text-sm">→</span>
         </button>
 
         <div id="results" class="empty:hidden pt-8 mt-4 border-t border-slate-50 space-y-4"></div>
@@ -100,35 +93,62 @@
   </div>
 </section>
 
-<section id="product-guide" class="max-w-6xl mx-auto px-6 py-32 border-t border-slate-100">
+<section id="product-guide" class="max-w-5xl mx-auto px-6 py-32 border-t border-slate-100">
     <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold tracking-tight mb-4 text-slate-900">Pro Product Guide</h2>
-        <p class="text-slate-400 font-medium max-w-lg mx-auto leading-relaxed">The hardware and chemicals the pros use to keep water clear.</p>
+        <h2 class="text-4xl font-bold tracking-tight mb-4 text-slate-900">Equipment Calibration Guide</h2>
+        <p class="text-slate-500 font-medium max-w-lg mx-auto leading-relaxed">Better data leads to better water. These are our vetted hardware picks for 2026.</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div class="group bg-white rounded-3xl p-8 border border-slate-100 hover:shadow-xl transition-all">
-            <div class="text-3xl mb-6">🤖</div>
-            <h4 class="text-xl font-bold mb-2 text-slate-900">Robotic Cleaners</h4>
-            <p class="text-sm text-slate-400 leading-relaxed mb-6">Automated floor and wall scrubbing for zero-effort maintenance.</p>
-            <a href="#" class="text-blue-700 font-black text-[10px] uppercase tracking-widest border-b-2 border-blue-50 group-hover:border-blue-600 transition-all">View Favorites</a>
-        </div>
-        <div class="group bg-white rounded-3xl p-8 border border-slate-100 hover:shadow-xl transition-all">
-            <div class="text-3xl mb-6">🧪</div>
-            <h4 class="text-xl font-bold mb-2 text-slate-900">Pro Chemical Kits</h4>
-            <p class="text-sm text-slate-400 leading-relaxed mb-6">High-concentration bundles that work faster than big-box store items.</p>
-            <a href="#" class="text-blue-700 font-black text-[10px] uppercase tracking-widest border-b-2 border-blue-50 group-hover:border-blue-600 transition-all">Shop Bundles</a>
-        </div>
-        <div class="group bg-white rounded-3xl p-8 border border-slate-100 hover:shadow-xl transition-all">
-            <div class="text-3xl mb-6">🌡️</div>
-            <h4 class="text-xl font-bold mb-2 text-slate-900">Testing Gear</h4>
-            <p class="text-sm text-slate-400 leading-relaxed mb-6">Professional drop-test kits for 100% accuracy every time.</p>
-            <a href="#" class="text-blue-700 font-black text-[10px] uppercase tracking-widest border-b-2 border-blue-50 group-hover:border-blue-600 transition-all">Browse Kits</a>
-        </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-separate border-spacing-y-4">
+            <thead>
+                <tr class="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                    <th class="px-6 pb-2">Category</th>
+                    <th class="px-6 pb-2">The Standard Pick</th>
+                    <th class="px-6 pb-2">The Pro Pick</th>
+                    <th class="px-6 pb-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white rounded-2xl shadow-sm border border-slate-100 group transition-all hover:shadow-md">
+                    <td class="px-6 py-8 rounded-l-2xl border-y border-l border-slate-100">
+                        <span class="font-black text-slate-900">Test Kits</span>
+                    </td>
+                    <td class="px-6 py-8 border-y border-slate-100">
+                        <p class="text-xs font-bold text-slate-700">Taylor K-2005</p>
+                        <p class="text-[10px] text-slate-400">Reliable drop test</p>
+                    </td>
+                    <td class="px-6 py-8 border-y border-slate-100">
+                        <p class="text-xs font-bold text-blue-700">Taylor K-2006C</p>
+                        <p class="text-[10px] text-slate-400">FAS-DPD Accuracy</p>
+                    </td>
+                    <td class="px-6 py-8 rounded-r-2xl border-y border-r border-slate-100">
+                        <a href="#" class="text-[10px] font-black uppercase text-blue-600 hover:text-blue-900 transition-colors">Compare Prices →</a>
+                    </td>
+                </tr>
+                <tr class="bg-white rounded-2xl shadow-sm border border-slate-100 group transition-all hover:shadow-md">
+                    <td class="px-6 py-8 rounded-l-2xl border-y border-l border-slate-100">
+                        <span class="font-black text-slate-900">Robotic Cleaners</span>
+                    </td>
+                    <td class="px-6 py-8 border-y border-slate-100">
+                        <p class="text-xs font-bold text-slate-700">Dolphin Nautilus CC</p>
+                        <p class="text-[10px] text-slate-400">Solid floor scrubbing</p>
+                    </td>
+                    <td class="px-6 py-8 border-y border-slate-100">
+                        <p class="text-xs font-bold text-blue-700">Polaris VRX iQ+</p>
+                        <p class="text-[10px] text-slate-400">Full waterline cleaning</p>
+                    </td>
+                    <td class="px-6 py-8 rounded-r-2xl border-y border-r border-slate-100">
+                        <a href="#" class="text-[10px] font-black uppercase text-blue-600 hover:text-blue-900 transition-colors">View Deals →</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>
 
-<footer class="text-center pb-20 text-slate-300 text-[10px] font-bold uppercase tracking-widest">
-  © 2026 PoolChem • Professional Water Calibration
+<footer class="text-center pb-20 text-slate-400 text-[10px] font-bold uppercase tracking-widest opacity-60">
+  © 2026 PoolChem • Analysis provided for informational purposes
 </footer>
 
 <script>
@@ -139,7 +159,7 @@ function calculateAdvanced() {
   const ch = parseFloat(document.getElementById("ch").value) || 250;
   const cya = parseFloat(document.getElementById("cya").value) || 40;
 
-  if (!vol || !ph || !ta) { alert("Please fill in Core Readings."); return; }
+  if (!vol || !ph || !ta) { alert("Core readings required."); return; }
 
   // PRO LOGIC: Corrected TA (POM Calculation)
   const correctedTA = ta - (cya * 0.33);
@@ -154,45 +174,51 @@ function calculateAdvanced() {
 
   let html = `
     <div class="bg-slate-900 rounded-3xl p-6 text-white mb-6">
-      <p class="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 mb-1">Saturation Index (LSI)</p>
-      <div class="flex justify-between items-end">
-        <h3 class="text-3xl font-black">${lsi.toFixed(2)}</h3>
+      <div class="flex justify-between items-start mb-4">
+        <div>
+            <p class="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 mb-1">Saturation Index (LSI)</p>
+            <h3 class="text-4xl font-black">${lsi.toFixed(2)}</h3>
+        </div>
         <span class="${lsiColor} text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">${lsiStatus}</span>
       </div>
-      <p class="text-[11px] mt-4 opacity-70 leading-relaxed font-medium">
-        ${lsi < -0.3 ? "Aggressive water. It may etch plaster or corrode metal equipment." : 
-          lsi > 0.3 ? "Over-saturated water. Scale buildup and cloudiness are likely." : 
-          "Perfectly balanced. This water is safe for swimmers and equipment."}
+      <p class="text-[11px] opacity-70 leading-relaxed font-medium">
+        ${lsi < -0.3 ? "Your water is mineral-hungry and may etch plaster or corrode metal." : 
+          lsi > 0.3 ? "Your water is over-saturated. Watch for cloudiness and heater scale." : 
+          "Perfectly balanced. This environment protects both swimmers and equipment."}
       </p>
     </div>
+    
+    <div class="space-y-4">
+        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2">Corrective Actions</p>
   `;
 
-  // Dosages
   if (ph > 7.6) {
     let dose = (ph - 7.5) * 12.5 * (vol / 10000);
-    html += createStep("Lower pH", `${dose.toFixed(1)} oz`, "Muriatic Acid (31%)", "Prevents scaling and ensures chlorine stays effective.");
+    html += createStep("Lower pH", `${dose.toFixed(1)} oz`, "Muriatic Acid (31%)", "Ensures chlorine stays active and prevents scaling.");
   }
   if (ta < 80) {
     let dose = (100 - ta) * 1.5 * (vol / 10000);
-    html += createStep("Raise Alkalinity", `${dose.toFixed(1)} lbs`, "Baking Soda", "Stabilizes pH to prevent rapid fluctuations (pH bounce).");
+    html += createStep("Raise Alkalinity", `${dose.toFixed(1)} lbs`, "Baking Soda", "Stabilizes pH and prevents rapid 'bounce'.");
   }
 
+  html += `</div>`;
   document.getElementById("results").innerHTML = html;
   document.getElementById("results").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function createStep(title, amt, chem, why) {
   return `
-    <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100">
-      <div class="flex justify-between items-start mb-2">
-        <div>
-           <p class="text-[9px] font-black text-blue-800 uppercase tracking-widest mb-1">${title}</p>
-           <h5 class="text-xl font-black text-slate-900">${amt}</h5>
-        </div>
-        <a href="#" class="bg-white border border-slate-200 text-slate-900 text-[10px] px-3 py-2 rounded-lg font-black uppercase hover:bg-slate-900 hover:text-white transition-all">Buy</a>
+    <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col md:flex-row gap-6 md:items-center justify-between group">
+      <div class="max-w-xs">
+        <p class="text-[9px] font-black text-blue-800 uppercase tracking-widest mb-1">${title}</p>
+        <h5 class="text-2xl font-black text-slate-900 mb-1">${amt}</h5>
+        <p class="text-[10px] font-bold text-slate-400 italic mb-2">${chem}</p>
+        <p class="text-[11px] text-slate-500 leading-relaxed font-medium">${why}</p>
       </div>
-      <p class="text-[10px] font-bold text-slate-400 mb-2 italic">${chem}</p>
-      <p class="text-[11px] text-slate-500 leading-relaxed font-medium">${why}</p>
+      <div class="flex flex-col gap-2 min-w-[140px]">
+        <a href="#" class="bg-white border-2 border-slate-900 text-slate-900 text-[10px] px-4 py-2 rounded-xl font-black uppercase text-center hover:bg-slate-900 hover:text-white transition-all">Check Price</a>
+        <a href="#" class="text-[9px] text-slate-400 font-bold uppercase text-center hover:text-blue-600 transition-all">Shed Stock Up</a>
+      </div>
     </div>
   `;
 }
