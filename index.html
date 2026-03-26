@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PoolChem | Pool Chemical Calculator</title>
+  <title>QuickPoolDose | Pool Chemical Calculator</title>
   <meta name="color-scheme" content="light only">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -60,7 +60,7 @@
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .logo-name { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: var(--ink); }
+    .logo-name { font-weight: 800; font-size: 0.95rem; letter-spacing: -0.02em; color: var(--ink); }
     .nav-links { display: flex; align-items: center; gap: 4px; }
     .nav-link {
       font-size: 12px; font-weight: 600; color: var(--muted);
@@ -220,6 +220,233 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
 
+    /* ── Products page ── */
+    #products-page { display: none; }
+
+    /* ── Scrollable category tabs ── */
+    .cat-tabs-wrap {
+      border-bottom: 1.5px solid var(--line);
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .cat-tabs {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .cat-tabs::-webkit-scrollbar { display: none; }
+    .cat-tab {
+      flex-shrink: 0;
+      padding: 14px 16px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1.5px;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .cat-tab.active { color: var(--ink); border-bottom-color: var(--water); }
+    .cat-tab:hover { color: var(--ink); }
+
+    /* ── Products container ── */
+    .products-container {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 20px 100px;
+    }
+
+    /* ── Category section ── */
+    .prod-section { padding-top: 40px; margin-bottom: 44px; }
+    .prod-section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .prod-section-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* ── Accordion rows ── */
+    .tier-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .tier-row {
+      background: white;
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .tier-row.open { border-color: var(--water); box-shadow: 0 4px 20px rgba(14,165,233,0.08); }
+
+    .tier-row-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Colored dot */
+    .tier-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-good   { background: #22c55e; }
+    .dot-better { background: #f59e0b; }
+    .dot-best   { background: var(--deep); }
+
+    /* Tier label */
+    .tier-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      width: 40px;
+    }
+    .label-good   { color: #16a34a; }
+    .label-better { color: #d97706; }
+    .label-best   { color: var(--deep); }
+
+    /* Product name */
+    .tier-prod-name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    /* Price */
+    .tier-prod-price {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    /* Chevron */
+    .tier-chevron {
+      flex-shrink: 0;
+      margin-left: 6px;
+      color: #cbd5e1;
+      transition: transform 0.25s ease;
+      font-size: 12px;
+    }
+    .tier-row.open .tier-chevron { transform: rotate(180deg); color: var(--water); }
+
+    /* Expanded body */
+    .tier-row-body {
+      display: none;
+      padding: 0 18px 18px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .tier-row.open .tier-row-body { display: block; }
+
+    .tier-body-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding-top: 14px;
+      margin-bottom: 14px;
+    }
+    .tier-body-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .tier-body-stars { color: #f59e0b; font-size: 11px; }
+    .tier-body-rating { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+    .tier-amazon-btn {
+      display: block;
+      width: 100%;
+      background: #FF9900;
+      color: #111;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      padding: 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .tier-amazon-btn:hover { background: #e68a00; }
+
+    /* ── Product guide promo banner ── */
+    .promo-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--ink);
+      border-radius: 18px;
+      padding: 18px 20px;
+      text-decoration: none;
+      margin-top: 12px;
+      transition: background 0.2s, transform 0.15s;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .promo-banner:hover { background: var(--deep); transform: translateY(-1px); }
+    .promo-banner:active { transform: scale(0.985); }
+    .promo-banner-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .promo-banner-text { flex: 1; min-width: 0; }
+    .promo-banner-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--water);
+      margin-bottom: 3px;
+    }
+    .promo-banner-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.3;
+    }
+    .promo-banner-arrow {
+      color: rgba(255,255,255,0.3);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
     .site-footer { text-align: center; padding: 16px 20px 52px; font-size: 10px; color: #b0bec5; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
   </style>
 </head>
@@ -236,15 +463,16 @@
           <path d="M2 18c2-4 4-6 6-6s4 4 6 4 4-4 6-4" opacity="0.5"/>
         </svg>
       </div>
-      <span class="logo-name">PoolChem</span>
+      <span class="logo-name"><span style="color:var(--water);">Quick</span>PoolDose</span>
     </div>
     <nav class="nav-links">
-      <a href="#" class="nav-link active">Calculator</a>
-      <a href="#" class="nav-link">Products</a>
+      <a href="#calculator" class="nav-link active" onclick="showSection('calculator')">Calculator</a>
+      <a href="#products" class="nav-link" onclick="showSection('products')">Products</a>
     </nav>
   </header>
 
   <!-- HERO -->
+  <div id="calculator-page">
   <section class="hero">
     <div class="hero-pill">
       <span class="hero-pill-dot"></span>
@@ -339,6 +567,16 @@
       </div>
     </div>
 
+    <!-- PRODUCT GUIDE PROMO — below calculator -->
+    <button class="promo-banner" onclick="showSection('products')">
+      <div class="promo-banner-icon">🛒</div>
+      <div class="promo-banner-text">
+        <div class="promo-banner-label">Pool Supply Guide</div>
+        <div class="promo-banner-title">Shop Good, Better, Best — for every pool product</div>
+      </div>
+      <div class="promo-banner-arrow">→</div>
+    </button>
+
     <!-- RESULTS -->
     <div id="results">
       <div class="results-header">
@@ -364,25 +602,544 @@
 
       <div class="disclaimer">
         Dosages are estimates based on standard formulas. Always follow product label instructions.<br>
-        <span style="opacity:0.6;">As an Amazon Associate, PoolChem earns from qualifying purchases.</span>
+        <span style="opacity:0.6;">As an Amazon Associate, QuickPoolDose earns from qualifying purchases.</span>
       </div>
+
+      <!-- PRODUCT GUIDE PROMO — bottom of results -->
+      <button class="promo-banner" onclick="showSection('products')" style="margin-top:20px;">
+        <div class="promo-banner-icon">⭐</div>
+        <div class="promo-banner-text">
+          <div class="promo-banner-label">Ready to stock up?</div>
+          <div class="promo-banner-title">Browse our Good, Better, Best product picks</div>
+        </div>
+        <div class="promo-banner-arrow">→</div>
+      </button>
     </div>
 
   </main>
+  </div><!-- /calculator-page -->
 
-  <footer class="site-footer">© 2026 PoolChem · Zebulon, NC</footer>
+  <!-- ═══════════════════════════════════════════════════
+       PRODUCTS PAGE
+  ════════════════════════════════════════════════════ -->
+  <div id="products-page">
+
+    <!-- Sticky category tab bar -->
+    <div class="cat-tabs-wrap">
+      <div class="cat-tabs">
+        <a class="cat-tab active" onclick="scrollToSection('sec-chlorine')">Chlorine</a>
+        <a class="cat-tab" onclick="scrollToSection('sec-shock')">Shock</a>
+        <a class="cat-tab" onclick="scrollToSection('sec-testing')">Test Kits</a>
+        <a class="cat-tab" onclick="scrollToSection('sec-robots')">Robots</a>
+        <a class="cat-tab" onclick="scrollToSection('sec-cleaning')">Cleaning</a>
+        <a class="cat-tab" onclick="scrollToSection('sec-algae')">Algae & Clarity</a>
+        <a class="cat-tab" onclick="scrollToSection('sec-salt')">Salt Systems</a>
+      </div>
+    </div>
+
+    <div class="products-container">
+
+      <!-- ── CHLORINE ── -->
+      <div class="prod-section" id="sec-chlorine">
+        <div class="prod-section-title">💧 Chlorine & Sanitizers</div>
+        <p class="prod-section-desc">Trichlor tablets are the most convenient option for most pools — slow-dissolving, stabilized, and available in bulk. Liquid chlorine is preferred when CYA is already high, since it adds zero stabilizer.</p>
+        <div class="tier-list">
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-good"></span>
+              <span class="tier-label label-good">Good</span>
+              <span class="tier-prod-name">HTH 3" Chlorine Tablets (5 lbs)</span>
+              <span class="tier-prod-price">~$18</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★☆</span>
+                <span class="tier-body-rating">4.4 · 6,200+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Reliable, no-fuss tablets for maintaining chlorine in a floater or skimmer basket. A solid budget pick that covers the basics for any size pool without complications.</p>
+              <a href="https://www.amazon.com/s?k=HTH+3+inch+chlorine+tablets+pool&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-better"></span>
+              <span class="tier-label label-better">Better</span>
+              <span class="tier-prod-name">In The Swim 3" Trichlor Tabs (25 lbs)</span>
+              <span class="tier-prod-price">~$65</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.7 · 12,400+ reviews</span>
+              </div>
+              <p class="tier-body-desc">The pool pro standard. Slow-dissolving tabs with built-in algaecide and clarifier. Buying in bulk cuts per-pound cost significantly and keeps you stocked all season.</p>
+              <a href="https://www.amazon.com/s?k=in+the+swim+3+inch+trichlor+tabs+25+lbs&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-best"></span>
+              <span class="tier-label label-best">Best</span>
+              <span class="tier-prod-name">In The Swim Liquid Chlorine (4-pack gallons)</span>
+              <span class="tier-prod-price">~$55</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.8 · 9,100+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Preferred by pool professionals. Liquid chlorine adds zero CYA — critical for pools where stabilizer has crept above 50 ppm. Raises free chlorine instantly with no residue or cloudiness.</p>
+              <a href="https://www.amazon.com/s?k=in+the+swim+liquid+pool+chlorine+gallon&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── SHOCK ── -->
+      <div class="prod-section" id="sec-shock">
+        <div class="prod-section-title">⚡ Pool Shock</div>
+        <p class="prod-section-desc">Shock weekly during swim season and after heavy use, rain, or an algae scare. Cal-hypo is the strongest granular option. Non-chlorine oxidizing shock lets you swim in 15 minutes and handles organic waste without adding stabilizer.</p>
+        <div class="tier-list">
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-good"></span>
+              <span class="tier-label label-good">Good</span>
+              <span class="tier-prod-name">HTH Super Shock (6-Pack, 1 lb bags)</span>
+              <span class="tier-prod-price">~$28</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★☆</span>
+                <span class="tier-body-rating">4.5 · 5,800+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Pre-measured 1 lb bags make dosing simple and mess-free. A reliable weekly shock for well-maintained pools — broadcast at dusk and swim by morning.</p>
+              <a href="https://www.amazon.com/s?k=HTH+super+shock+pool+6+pack&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-better"></span>
+              <span class="tier-label label-better">Better</span>
+              <span class="tier-prod-name">In The Swim Cal-Hypo Pool Shock (12 lbs)</span>
+              <span class="tier-prod-price">~$52</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.8 · 8,274+ reviews</span>
+              </div>
+              <p class="tier-body-desc">68% calcium hypochlorite — the strongest granular shock available for residential use. Destroys algae, chloramines, and bacteria fast. Bulk size brings cost per pound down significantly.</p>
+              <a href="https://www.amazon.com/s?k=in+the+swim+cal+hypo+pool+shock+12+lbs&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-best"></span>
+              <span class="tier-label label-best">Best</span>
+              <span class="tier-prod-name">Rx Clear Non-Chlorine Oxidizing Shock (25 lbs)</span>
+              <span class="tier-prod-price">~$72</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.7 · 3,100+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Swim in 15 minutes. Potassium peroxymonosulfate oxidizes organics without adding chlorine, CYA, or calcium — making it perfect for weekly oxidation alongside your normal chlorine routine.</p>
+              <a href="https://www.amazon.com/s?k=non+chlorine+pool+shock+potassium+peroxymonosulfate+25+lbs&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── TEST KITS ── -->
+      <div class="prod-section" id="sec-testing">
+        <div class="prod-section-title">🧪 Test Kits & Strips</div>
+        <p class="prod-section-desc">Test strips are fast but imprecise — fine for weekly spot checks. Liquid drop kits like the Taylor K-2006 are what pool stores use and are far more accurate for chlorine and pH. Digital photometers eliminate all guesswork.</p>
+        <div class="tier-list">
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-good"></span>
+              <span class="tier-label label-good">Good</span>
+              <span class="tier-prod-name">AquaChek 7-in-1 Test Strips (100 ct)</span>
+              <span class="tier-prod-price">~$16</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★☆</span>
+                <span class="tier-body-rating">4.5 · 14,200+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Tests free chlorine, pH, alkalinity, hardness, CYA, and more in 60 seconds. Fast and easy enough for daily checks. 100 strips gets most pools through the season.</p>
+              <a href="https://www.amazon.com/s?k=aquachek+7+in+1+pool+test+strips+100&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-better"></span>
+              <span class="tier-label label-better">Better</span>
+              <span class="tier-prod-name">Taylor K-2006 Complete Liquid Test Kit</span>
+              <span class="tier-prod-price">~$48</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.8 · 7,900+ reviews</span>
+              </div>
+              <p class="tier-body-desc">The kit pool stores use. Drop-based reagent testing is significantly more accurate than strips. The FAS-DPD method reads chlorine at any level without bleaching out — essential when shock levels are high.</p>
+              <a href="https://www.amazon.com/s?k=taylor+k-2006+complete+pool+test+kit&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-best"></span>
+              <span class="tier-label label-best">Best</span>
+              <span class="tier-prod-name">LaMotte ColorQ Pro 7 Digital Photometer</span>
+              <span class="tier-prod-price">~$130</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.6 · 2,400+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Lab-grade accuracy with zero color-interpretation guesswork. Dip, read, get exact numbers for 7 parameters. For serious pool owners who want to run their water like a professional.</p>
+              <a href="https://www.amazon.com/s?k=lamotte+colorq+pro+7+digital+pool+photometer&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── ROBOTS ── -->
+      <div class="prod-section" id="sec-robots">
+        <div class="prod-section-title">🤖 Robotic Pool Cleaners</div>
+        <p class="prod-section-desc">A robotic cleaner reduces your filter load, cuts chemical usage by up to 30%, and eliminates manual vacuuming. The jump from suction-side to a true robot is the single biggest quality-of-life upgrade a pool owner can make.</p>
+        <div class="tier-list">
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-good"></span>
+              <span class="tier-label label-good">Good</span>
+              <span class="tier-prod-name">Zodiac MX6 Suction-Side Pool Cleaner</span>
+              <span class="tier-prod-price">~$180</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★☆</span>
+                <span class="tier-body-rating">4.4 · 4,600+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Hooks directly to your existing pump — no separate power supply. Cyclonic suction scrubs the floor and lower walls automatically. Great entry point that requires no additional electrical work.</p>
+              <a href="https://www.amazon.com/s?k=zodiac+mx6+suction+pool+cleaner&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-better"></span>
+              <span class="tier-label label-better">Better</span>
+              <span class="tier-prod-name">Dolphin Nautilus CC Plus Robotic Cleaner</span>
+              <span class="tier-prod-price">~$500</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.6 · 18,300+ reviews</span>
+              </div>
+              <p class="tier-body-desc">The #1 best-selling pool robot on Amazon. Cleans floor, walls, and waterline in 2.5 hours. Dual scrubbing brushes and a top-load cartridge filter make it easy to clean and reuse.</p>
+              <a href="https://www.amazon.com/s?k=dolphin+nautilus+cc+plus+robotic+pool+cleaner&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-best"></span>
+              <span class="tier-label label-best">Best</span>
+              <span class="tier-prod-name">Dolphin Premier App-Controlled Robotic Cleaner</span>
+              <span class="tier-prod-price">~$950</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.7 · 6,800+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Full pool coverage with app-based scheduling and remote control. Multi-layer filtration catches particles down to 2 microns. The last pool cleaner you'll ever need to buy.</p>
+              <a href="https://www.amazon.com/s?k=dolphin+premier+robotic+pool+cleaner+app&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── CLEANING ── -->
+      <div class="prod-section" id="sec-cleaning">
+        <div class="prod-section-title">🕸️ Skimmers & Manual Cleaning</div>
+        <p class="prod-section-desc">Surface skimming removes debris before it sinks and decays — reducing chlorine demand and filter load. A complete manual kit handles what robots miss: corners, steps, and waterlines.</p>
+        <div class="tier-list">
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-good"></span>
+              <span class="tier-label label-good">Good</span>
+              <span class="tier-prod-name">U.S. Pool Supply Fine Mesh Skimmer Net</span>
+              <span class="tier-prod-price">~$18</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★☆</span>
+                <span class="tier-body-rating">4.5 · 8,100+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Fine mesh catches small debris other nets miss. Durable aluminum frame won't bend under a heavy leaf load. Fits any standard telescoping pole — a non-negotiable tool for every pool deck.</p>
+              <a href="https://www.amazon.com/s?k=pool+fine+mesh+leaf+skimmer+net&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-better"></span>
+              <span class="tier-label label-better">Better</span>
+              <span class="tier-prod-name">Poolmaster 5-Piece Complete Cleaning Kit</span>
+              <span class="tier-prod-price">~$55</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.6 · 11,200+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Everything in one box — telescoping pole, vacuum head, vacuum hose, wall brush, and skimmer net. Covers floor, walls, and surface in one weekly cleaning session.</p>
+              <a href="https://www.amazon.com/s?k=poolmaster+5+piece+pool+cleaning+kit+complete&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-best"></span>
+              <span class="tier-label label-best">Best</span>
+              <span class="tier-prod-name">Solar Breeze NX2 Solar-Powered Surface Skimmer</span>
+              <span class="tier-prod-price">~$550</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★☆</span>
+                <span class="tier-body-rating">4.3 · 1,900+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Solar-powered autonomous surface skimmer runs all day with zero electricity cost. Removes leaves, pollen, and sunscreen oils before they sink — reducing filter and chemical load by up to 30%.</p>
+              <a href="https://www.amazon.com/s?k=solar+breeze+nx2+solar+powered+pool+skimmer&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── ALGAE & CLARITY ── -->
+      <div class="prod-section" id="sec-algae">
+        <div class="prod-section-title">🌿 Algae & Water Clarity</div>
+        <p class="prod-section-desc">Prevention is always cheaper than treatment. A weekly algaecide dose costs pennies compared to a full green pool recovery. Enzymes break down oils and organics that chlorine can't efficiently handle, reducing your overall chemical demand.</p>
+        <div class="tier-list">
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-good"></span>
+              <span class="tier-label label-good">Good</span>
+              <span class="tier-prod-name">HTH Pool Clarifier (1 qt)</span>
+              <span class="tier-prod-price">~$14</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★☆</span>
+                <span class="tier-body-rating">4.4 · 5,300+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Clumps fine particles so your filter can catch them. Turns dull, hazy water sparkling clear in 24 hours. Add weekly during high-swim season for consistently crystal water.</p>
+              <a href="https://www.amazon.com/s?k=HTH+pool+clarifier+water+1+quart&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-better"></span>
+              <span class="tier-label label-better">Better</span>
+              <span class="tier-prod-name">In The Swim 60% Pool Algaecide (1 qt)</span>
+              <span class="tier-prod-price">~$26</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.7 · 9,400+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Kills and prevents green, black, and mustard algae. A weekly preventative dose is far cheaper than treating a green pool. Compatible with all sanitizer systems including saltwater.</p>
+              <a href="https://www.amazon.com/s?k=in+the+swim+60+percent+pool+algaecide+quart&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-best"></span>
+              <span class="tier-label label-best">Best</span>
+              <span class="tier-prod-name">Natural Chemistry Pool Perfect + PHOSfree</span>
+              <span class="tier-prod-price">~$42</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.7 · 7,200+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Enzymes break down non-living organics (oils, sunscreen, pollen) that chlorine wastes energy on — cutting chlorine demand by up to 30%. PHOSfree eliminates phosphates, the primary food source for algae.</p>
+              <a href="https://www.amazon.com/s?k=natural+chemistry+pool+perfect+phosfree&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── SALT SYSTEMS ── -->
+      <div class="prod-section" id="sec-salt">
+        <div class="prod-section-title">🧂 Salt Chlorine Generators</div>
+        <p class="prod-section-desc">A salt system converts dissolved salt into chlorine automatically — no more buying, storing, or handling tablets. Softer water, lower annual costs, and near-zero manual chlorine maintenance. The upgrade most pool owners never go back from.</p>
+        <div class="tier-list">
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-good"></span>
+              <span class="tier-label label-good">Good</span>
+              <span class="tier-prod-name">Intex Krystal Clear Salt Water System</span>
+              <span class="tier-prod-price">~$140</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★☆</span>
+                <span class="tier-body-rating">4.3 · 7,800+ reviews</span>
+              </div>
+              <p class="tier-body-desc">An affordable entry point into saltwater — ideal for above-ground pools up to 15,000 gallons. Eliminates the need to buy and handle chlorine tablets. Softer water from day one.</p>
+              <a href="https://www.amazon.com/s?k=intex+krystal+clear+salt+water+system+pool&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-better"></span>
+              <span class="tier-label label-better">Better</span>
+              <span class="tier-prod-name">Hayward W3AQR9 AquaRite Salt Chlorinator</span>
+              <span class="tier-prod-price">~$650</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.6 · 4,200+ reviews</span>
+              </div>
+              <p class="tier-body-desc">The most installed residential salt system in the US. Self-cleaning cell, digital output display, and automatic adjustment. Works up to 40,000 gallons. Replacement parts are available everywhere.</p>
+              <a href="https://www.amazon.com/s?k=hayward+W3AQR9+aquarite+salt+chlorinator&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+          <div class="tier-row" onclick="toggleRow(this)">
+            <div class="tier-row-header">
+              <span class="tier-dot dot-best"></span>
+              <span class="tier-label label-best">Best</span>
+              <span class="tier-prod-name">Pentair IntelliChlor IC40 Salt System</span>
+              <span class="tier-prod-price">~$800</span>
+              <span class="tier-chevron">▾</span>
+            </div>
+            <div class="tier-row-body">
+              <div class="tier-body-meta">
+                <span class="tier-body-stars">★★★★★</span>
+                <span class="tier-body-rating">4.7 · 3,100+ reviews</span>
+              </div>
+              <p class="tier-body-desc">Best-in-class automation. Integrates with Pentair's IntelliConnect app for remote monitoring and control. Built-in flow detection, diagnostics, and a long-lasting cell make this the choice for serious pool automation.</p>
+              <a href="https://www.amazon.com/s?k=pentair+intellichlor+IC40+salt+system&tag=quickpooldose-20" target="_blank" rel="noopener" class="tier-amazon-btn">View on Amazon →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="disclaimer" style="margin-top:8px;">
+        As an Amazon Associate, QuickPoolDose earns from qualifying purchases.<br>
+        <span style="opacity:0.6;">Product ratings sourced from Amazon at time of writing.</span>
+      </div>
+
+    </div>
+  </div><!-- /products-page -->
+
+  <footer class="site-footer">© 2026 QuickPoolDose · Zebulon, NC</footer>
 
 </div>
 <script>
+// ── Accordion toggle ──────────────────────────────────────────────────────────
+function toggleRow(row) {
+  const isOpen = row.classList.contains('open');
+  // Close all others in same list
+  row.closest('.tier-list').querySelectorAll('.tier-row').forEach(r => r.classList.remove('open'));
+  if (!isOpen) row.classList.add('open');
+}
+
+// ── Products category scroll ──────────────────────────────────────────────────
+function scrollToSection(id) {
+  // Update active tab
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = el.getBoundingClientRect().top + window.scrollY - 56;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
+  }
+}
+function showSection(section) {
+  const calcPage = document.getElementById('calculator-page');
+  const prodPage = document.getElementById('products-page');
+  const links    = document.querySelectorAll('.nav-link');
+
+  if (section === 'products') {
+    calcPage.style.display = 'none';
+    prodPage.style.display = 'block';
+    links[0].classList.remove('active');
+    links[1].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    calcPage.style.display = 'block';
+    prodPage.style.display = 'none';
+    links[0].classList.add('active');
+    links[1].classList.remove('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  return false;
+}
 const PRODUCTS = {
-  muriaticAcid: { emoji:'🧪', name:'Klean Strip Green Muriatic Acid',       rating:'4.7', reviews:'2,341', tag:'Best Seller', href:'https://www.amazon.com/s?k=muriatic+acid+pool&tag=YOUR-TAG' },
-  sodaAsh:      { emoji:'🫧', name:'Clorox Pool & Spa pH Up',                rating:'4.6', reviews:'3,102', tag:'Top Rated',   href:'https://www.amazon.com/s?k=pool+ph+up+soda+ash&tag=YOUR-TAG' },
-  bakingSoda:   { emoji:'🥤', name:'Arm & Hammer Pool Baking Soda',          rating:'4.8', reviews:'5,811', tag:'#1 Choice',   href:'https://www.amazon.com/s?k=baking+soda+pool+alkalinity&tag=YOUR-TAG' },
-  liquidChlor:  { emoji:'💧', name:'In The Swim Liquid Chlorine',            rating:'4.7', reviews:'4,509', tag:'Fast Acting', href:'https://www.amazon.com/s?k=liquid+pool+chlorine&tag=YOUR-TAG' },
-  shock:        { emoji:'⚡', name:'In The Swim Cal-Hypo Pool Shock',        rating:'4.8', reviews:'8,274', tag:'Best Seller', href:'https://www.amazon.com/s?k=pool+shock+cal+hypo&tag=YOUR-TAG' },
-  stabilizer:   { emoji:'🛡️', name:'Clorox Pool & Spa Stabilizer',          rating:'4.7', reviews:'6,103', tag:'Essential',   href:'https://www.amazon.com/s?k=pool+cyanuric+acid+stabilizer&tag=YOUR-TAG' },
-  calciumUp:    { emoji:'💎', name:'Clorox Pool Calcium Hardness Increaser', rating:'4.6', reviews:'2,077', tag:'Popular',     href:'https://www.amazon.com/s?k=pool+calcium+hardness+increaser&tag=YOUR-TAG' },
-  flocculant:   { emoji:'🌀', name:'HTH Super Clarifier & Flocculant',       rating:'4.5', reviews:'3,288', tag:'Quick Fix',   href:'https://www.amazon.com/s?k=pool+flocculant+clarifier&tag=YOUR-TAG' },
+  muriaticAcid: { emoji:'🧪', name:'Klean Strip Green Muriatic Acid',       rating:'4.7', reviews:'2,341', tag:'Best Seller', href:'https://www.amazon.com/s?k=muriatic+acid+pool&tag=quickpooldose-20' },
+  sodaAsh:      { emoji:'🫧', name:'Clorox Pool & Spa pH Up',                rating:'4.6', reviews:'3,102', tag:'Top Rated',   href:'https://www.amazon.com/s?k=pool+ph+up+soda+ash&tag=quickpooldose-20' },
+  bakingSoda:   { emoji:'🥤', name:'Arm & Hammer Pool Baking Soda',          rating:'4.8', reviews:'5,811', tag:'#1 Choice',   href:'https://www.amazon.com/s?k=baking+soda+pool+alkalinity&tag=quickpooldose-20' },
+  liquidChlor:  { emoji:'💧', name:'In The Swim Liquid Chlorine',            rating:'4.7', reviews:'4,509', tag:'Fast Acting', href:'https://www.amazon.com/s?k=liquid+pool+chlorine&tag=quickpooldose-20' },
+  shock:        { emoji:'⚡', name:'In The Swim Cal-Hypo Pool Shock',        rating:'4.8', reviews:'8,274', tag:'Best Seller', href:'https://www.amazon.com/s?k=pool+shock+cal+hypo&tag=quickpooldose-20' },
+  stabilizer:   { emoji:'🛡️', name:'Clorox Pool & Spa Stabilizer',          rating:'4.7', reviews:'6,103', tag:'Essential',   href:'https://www.amazon.com/s?k=pool+cyanuric+acid+stabilizer&tag=quickpooldose-20' },
+  calciumUp:    { emoji:'💎', name:'Clorox Pool Calcium Hardness Increaser', rating:'4.6', reviews:'2,077', tag:'Popular',     href:'https://www.amazon.com/s?k=pool+calcium+hardness+increaser&tag=quickpooldose-20' },
+  flocculant:   { emoji:'🌀', name:'HTH Super Clarifier & Flocculant',       rating:'4.5', reviews:'3,288', tag:'Quick Fix',   href:'https://www.amazon.com/s?k=pool+flocculant+clarifier&tag=quickpooldose-20' },
 };
 
 function productCard(p) {
